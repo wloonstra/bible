@@ -1,0 +1,22 @@
+10 maart 2011
+From scratch begonnen.
+Pom.xml, alleen de eerste paar regels. Runnen. Werkt.
+Dependencies toevoegen: junit en hamcrest. Runnen. Werkt.
+Eerste test schrijven. Gaat prima in eclipse.
+Maar niet vanaf commandline.
+Een maven compiler plugin aan de pom toegevoegd.
+Nu gaat het wel weer goed.
+Packaging war ingesteld.
+Dan wil ie niet packagen, want (nog) geen web.xml.
+Dus zeer minimalistic web.xml toegvoegd.
+Nu wil ie weer bouwen.
+Deploy scriptje gemaakt die eerst niewe war bouwt,
+dan tomcat stopt, oude zooi weggooit en het nieuwe erin zet.
+Dan tomcat weer starten.
+Eerste servlet toegevoegd, die leest parameter en serveert die aan jsp.
+Jsp leest de parameter en print. Volledige roundtrip in het klein dus.
+Werkt. 
+Uiteindelijk blijkt jsp/ dir ook te kunnen binnen WEB-INF (standaard locatie).
+maar /jsp/home.jsp gaat niet, dan localhost:8080/jsp/home.jsp wordt gezocht.
+Dan moet je opgeven /bible/jsp/home.jsp, maar dat wil je eigenlijk niet.
+Dan maar relatief pad: jsp/home.jsp. Nu wordt ie wel gevonden.
