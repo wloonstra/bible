@@ -6,5 +6,15 @@
 	version="2.4">
 
     <description></description>
-        <display-name>BibleText</display-name>
+    <display-name>BibleText</display-name>
+    
+    <servlet>
+        <servlet-name>home</servlet-name>
+        <servlet-class>nl.wiggertloonstra.bible.servlet.HomeServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>home</servlet-name>
+        <url-pattern>/home.html</url-pattern>
+    </servlet-mapping>
 </web-app>
