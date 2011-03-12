@@ -11,6 +11,9 @@
         <property name="hibernate.connection.username">bible</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <mapping class="nl.wiggertloonstra.util.Person"/>
+        <mapping class="nl.wiggertloonstra.attic.Person"/>
+        <mapping class="nl.wiggertloonstra.bible.domain.Book"/>
+        <mapping class="nl.wiggertloonstra.bible.domain.BibleText"/>
+        
     </session-factory>
 </hibernate-configuration>

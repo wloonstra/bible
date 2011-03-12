@@ -1,4 +1,4 @@
-package nl.wiggertloonstra.util;
+package nl.wiggertloonstra.attic;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

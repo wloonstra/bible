@@ -1,7 +1,9 @@
-package nl.wiggertloonstra.util;
+package nl.wiggertloonstra.attic;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+
+import nl.wiggertloonstra.attic.NumberUtil;
 
 import org.junit.Test;
 
