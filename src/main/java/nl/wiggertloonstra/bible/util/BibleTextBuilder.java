@@ -2,6 +2,7 @@ package nl.wiggertloonstra.bible.util;
 
 import nl.wiggertloonstra.bible.domain.BibleText;
 import nl.wiggertloonstra.bible.domain.Book;
+import nl.wiggertloonstra.bible.domain.User;
 
 public class BibleTextBuilder {
     
@@ -10,14 +11,13 @@ public class BibleTextBuilder {
     private int startVerse;
     private int endChapter;
     private int endVerse;
+    private User user;
     
     public static BibleTextBuilder aBibleText() {
         return new BibleTextBuilder();
     }
     
-    public BibleTextBuilder withBook(String bookName) {
-        Book book = new Book();
-        book.setName(bookName);
+    public BibleTextBuilder withBook(Book book) {
         this.book = book;
         return this;
     }
@@ -42,6 +42,11 @@ public class BibleTextBuilder {
         return this;
     }
     
+    public BibleTextBuilder withUser(User user) {
+        this.user = user;
+        return this;
+    }
+    
     public BibleText build() {
         BibleText bibleText = new BibleText();
         bibleText.setBook(book);
@@ -49,6 +54,7 @@ public class BibleTextBuilder {
         bibleText.setStartVerse(startVerse);
         bibleText.setEndChapter(endChapter);
         bibleText.setEndVerse(endVerse);
+        bibleText.setUser(user);
         return bibleText;
     }
 }

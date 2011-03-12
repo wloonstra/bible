@@ -14,6 +14,6 @@
         <mapping class="nl.wiggertloonstra.attic.Person"/>
         <mapping class="nl.wiggertloonstra.bible.domain.Book"/>
         <mapping class="nl.wiggertloonstra.bible.domain.BibleText"/>
-        
+        <mapping class="nl.wiggertloonstra.bible.domain.User"/>
     </session-factory>
 </hibernate-configuration>

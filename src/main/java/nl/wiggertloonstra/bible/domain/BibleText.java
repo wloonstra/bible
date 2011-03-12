@@ -1,18 +1,18 @@
 package nl.wiggertloonstra.bible.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "bibletext")
 public class BibleText {
     
     @Id
+    @GeneratedValue
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "book")
     private Book book;
     
     private int startChapter;
@@ -20,10 +20,13 @@ public class BibleText {
     private int startVerse;
     private int endVerse;
     
+    @ManyToOne
+    private User user;
+    
     public BibleText() {
         // empty constructor
     }
-    
+
     public BibleText(Book book, int startChapter, int endChapter, int startVerse, int endVerse) {
         this.book = book;
         this.startChapter = startChapter;
@@ -78,6 +81,14 @@ public class BibleText {
 
     public void setEndVerse(int endVerse) {
         this.endVerse = endVerse;
+    }
+    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

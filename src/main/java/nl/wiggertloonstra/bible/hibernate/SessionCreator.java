@@ -3,9 +3,11 @@ package nl.wiggertloonstra.bible.hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
-public class SessionCreator {
-    private static final SessionFactory sessionFactory = buildSessionFactory();
+public enum SessionCreator {
+    SESSION_CREATER;
     
+    private static final SessionFactory sessionFactory = buildSessionFactory();
+
     private static SessionFactory buildSessionFactory() {
         try {
             return new AnnotationConfiguration().configure().buildSessionFactory();

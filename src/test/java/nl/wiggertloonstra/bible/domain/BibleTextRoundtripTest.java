@@ -17,12 +17,19 @@ public class BibleTextRoundtripTest {
         Book genesis = (Book) session.createCriteria(Book.class)
             .add(Restrictions.like("name", "Genesis")).uniqueResult();
         
+        User user = new User();
+        user.setUsername("piet");
+        session.beginTransaction();
+        User storedUser = (User) session.merge(user);
+        session.getTransaction().commit();
+        
         BibleText bibleText = new BibleText();
         bibleText.setBook(genesis);
         bibleText.setStartChapter(5);
         bibleText.setStartVerse(12);
         bibleText.setEndChapter(6);
         bibleText.setEndVerse(20);
+        bibleText.setUser(storedUser);
         
         session.beginTransaction();
         BibleText storedBibleText = (BibleText) session.merge(bibleText);
@@ -38,6 +45,7 @@ public class BibleTextRoundtripTest {
         assertThat(retrievedBibleText.getStartVerse(), is(12));
         assertThat(retrievedBibleText.getEndChapter(), is(6));
         assertThat(retrievedBibleText.getEndVerse(), is(20));
+        assertThat(retrievedBibleText.getUser().getUsername(), is("piet"));
         
         SessionCreator.getSessionFactory().close();
     }
