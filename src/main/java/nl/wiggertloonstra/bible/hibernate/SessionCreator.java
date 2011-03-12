@@ -4,7 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
 public enum SessionCreator {
-    SESSION_CREATER;
+    INSTANCE;
     
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
@@ -21,9 +21,4 @@ public enum SessionCreator {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-    
-    public static void shutdown() {
-        getSessionFactory().close();
-    }
- 
 }

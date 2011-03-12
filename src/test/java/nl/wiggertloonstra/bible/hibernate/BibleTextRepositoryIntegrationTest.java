@@ -20,21 +20,21 @@ public class BibleTextRepositoryIntegrationTest {
         User user = new UserRepository().store(newUser());
         
         BibleText newBibleText1 = aBibleText()
-                                 .withBook(leviticus)
-                                 .withStartChapter(5)
-                                 .withStartVerse(10)
-                                 .withEndChapter(6)
-                                 .withEndVerse(20)
-                                 .withUser(user)
+                                 .inBook(leviticus)
+                                 .startsAtChapter(5)
+                                 .startsAtVerse(10)
+                                 .endsAtChapter(6)
+                                 .endsWithVerse(20)
+                                 .addedBy(user)
                                  .build();
         
         BibleText newBibleText2 = aBibleText()
-                                 .withBook(leviticus)
-                                 .withStartChapter(15)
-                                 .withStartVerse(10)
-                                 .withEndChapter(16)
-                                 .withEndVerse(20)
-                                 .withUser(user)
+                                 .inBook(leviticus)
+                                 .startsAtChapter(15)
+                                 .startsAtVerse(10)
+                                 .endsAtChapter(16)
+                                 .endsWithVerse(20)
+                                 .addedBy(user)
                                  .build();
         
         BibleTextRepository bibleTextRepository = new BibleTextRepository();

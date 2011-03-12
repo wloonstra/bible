@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Represents the Bible books in Dutch names
+ * Represents a Bible book in Dutch names
  * @author wloonstra
  */
 @Entity(name = "book")

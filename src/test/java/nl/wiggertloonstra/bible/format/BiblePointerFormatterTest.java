@@ -14,30 +14,24 @@ public class BiblePointerFormatterTest {
     @Test
     public void createNameForWithinOneChapter() throws Exception {
         BibleText text = aBibleText()
-                         .withBook(newBook("Exodus"))
-                         .withStartChapter(5)
-                         .withStartVerse(1)
-                         .withEndVerse(10)
+                         .inBook(newBook("Exodus"))
+                         .startsAtChapter(5)
+                         .startsAtVerse(1)
+                         .endsWithVerse(10)
                          .build();
         String biblePointer = BiblePointerFormatter.format(text);
         
         assertThat(biblePointer, is("Exodus 5:1-10"));
     }
 
-    private Book newBook(String bookName) {
-        Book book = new Book();
-        book.setName(bookName);
-        return book;
-    }
-
     @Test
     public void createsNameForMoreChapters() throws Exception {
         BibleText text = aBibleText()
-                         .withBook(newBook("1 Petrus"))
-                         .withStartChapter(5)
-                         .withStartVerse(1)
-                         .withEndChapter(7)
-                         .withEndVerse(23)
+                         .inBook(newBook("1 Petrus"))
+                         .startsAtChapter(5)
+                         .startsAtVerse(1)
+                         .endsAtChapter(7)
+                         .endsWithVerse(23)
                          .build();
         String biblePointer = BiblePointerFormatter.format(text);
         
@@ -47,14 +41,20 @@ public class BiblePointerFormatterTest {
     @Test
     public void shouldNotShowSameEndChapters() throws Exception {
         BibleText text = aBibleText()
-                         .withBook(newBook("1 Petrus"))
-                         .withStartChapter(5)
-                         .withStartVerse(1)
-                         .withEndChapter(5)
-                         .withEndVerse(23)
+                         .inBook(newBook("1 Petrus"))
+                         .startsAtChapter(5)
+                         .startsAtVerse(1)
+                         .endsAtChapter(5)
+                         .endsWithVerse(23)
                          .build();
         String biblePointer = BiblePointerFormatter.format(text);
 
         assertThat(biblePointer, is("1 Petrus 5:1-23"));
+    }
+    
+    private Book newBook(String bookName) {
+        Book book = new Book();
+        book.setName(bookName);
+        return book;
     }
 }

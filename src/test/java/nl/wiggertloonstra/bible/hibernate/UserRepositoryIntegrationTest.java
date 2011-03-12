@@ -9,7 +9,7 @@ import org.junit.Test;
 public class UserRepositoryIntegrationTest {
     
     @Test
-    public void storeUser() throws Exception {
+    public void storeAndRetrieveUser() throws Exception {
         User newUser = new User();
         newUser.setUsername("nieuwe user");
         

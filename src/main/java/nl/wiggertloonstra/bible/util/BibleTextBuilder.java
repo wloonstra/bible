@@ -17,32 +17,32 @@ public class BibleTextBuilder {
         return new BibleTextBuilder();
     }
     
-    public BibleTextBuilder withBook(Book book) {
+    public BibleTextBuilder inBook(Book book) {
         this.book = book;
         return this;
     }
     
-    public BibleTextBuilder withStartChapter(int startChapter) {
+    public BibleTextBuilder startsAtChapter(int startChapter) {
         this.startChapter = startChapter;
         return this;
     }
     
-    public BibleTextBuilder withStartVerse(int startVerse) {
+    public BibleTextBuilder startsAtVerse(int startVerse) {
         this.startVerse = startVerse;
         return this;
     }
     
-    public BibleTextBuilder withEndChapter(int endChapter) {
+    public BibleTextBuilder endsAtChapter(int endChapter) {
         this.endChapter = endChapter;
         return this;
     }
     
-    public BibleTextBuilder withEndVerse(int endVerse) {
+    public BibleTextBuilder endsWithVerse(int endVerse) {
         this.endVerse = endVerse;
         return this;
     }
     
-    public BibleTextBuilder withUser(User user) {
+    public BibleTextBuilder addedBy(User user) {
         this.user = user;
         return this;
     }
