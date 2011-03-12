@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS book;
+
+CREATE TABLE book(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(40)
+);
+
+INSERT INTO book VALUES
+    (1, 'Genesis'),
+    (2, 'Exodus'),
+    (3, 'Leviticus'),
+    (4, 'Numeri'),
+    (5, 'Deuteronomium'),
+    (6, 'Jozua'),
+    (7, 'Richteren'),
+    (8, 'Ruth'),
+    (9, '1 Samuël'),
+    (10, '2 Samuël'),
+    (11, '1 Koningen'),
+    (12, '2 Koningen'),
+    (13, '1 Kronieken'),
+    (14, '2 Kronieken'),
+    (15, 'Ezra'),
+    (16, 'Nehemia'),
+    (17, 'Ester'),
+    (18, 'Job'),
+    (19, 'Psalmen'),
+    (20, 'Spreuken'),
+    (21, 'Prediker'),
+    (22, 'Hooglied'),
+    (23, 'Jesaja'),
+    (24, 'Jeremia'),
+    (25, 'Klaagliederen'),
+    (26, 'Ezechiël'),
+    (27, 'Daniël'),
+    (28, 'Hosea'),
+    (29, 'Joël'),
+    (30, 'Amos'),
+    (31, 'Obadja'),
+    (32, 'Jona'),
+    (33, 'Micha'),
+    (34, 'Nahum'),
+    (35, 'Habakuk'),
+    (36, 'Sefanja'),
+    (37, 'Haggai'),
+    (38, 'Zaggaria'),
+    (39, 'Maleachi');
