@@ -1,28 +1,25 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static nl.wiggertloonstra.bible.hibernate.SessionCreator.getSessionFactory;
-import static org.hibernate.criterion.Restrictions.like;
-
 import java.util.List;
 
 import nl.wiggertloonstra.bible.domain.Book;
 
-import org.hibernate.classic.Session;
+/**
+ * BookRepository to get books.
+ * @author wloonstra
+ */
+public interface BookRepository {
 
-public class BookRepository {
+    /**
+     * @return all books
+     */
+    List<Book> getBooks();
     
-    public List<Book> getBooks() {
-        Session session = SessionCreator.getSessionFactory().openSession();
-        @SuppressWarnings("unchecked")
-        List<Book> books = (List<Book>) session.createCriteria(Book.class).list();
-        return books;
-    }
+    /**
+     * Return the book for a given name.
+     * @param bookName to return the book for
+     * @return book with given name
+     */
+    Book getBookWithName(String bookName);
 
-    public Book getBookWithName(String bookName) {
-        Session session = getSessionFactory().openSession();
-        return (Book) session
-                .createCriteria(Book.class)
-                .add(like("name", bookName))
-                .uniqueResult();
-    }
 }

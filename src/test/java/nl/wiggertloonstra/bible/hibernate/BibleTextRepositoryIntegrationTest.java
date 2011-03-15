@@ -16,7 +16,7 @@ public class BibleTextRepositoryIntegrationTest {
     
     @Test
     public void storeNewBibleText() throws Exception {
-        Book leviticus = new BookRepository().getBookWithName("Leviticus");
+        Book leviticus = new HibernateBookRepository().getBookWithName("Leviticus");
         User user = new UserRepository().store(newUser());
         
         BibleText newBibleText1 = aBibleText()
@@ -38,7 +38,7 @@ public class BibleTextRepositoryIntegrationTest {
                                  .addedBy(user)
                                  .build();
         
-        BibleTextRepository bibleTextRepository = new BibleTextRepository();
+        BibleTextRepository bibleTextRepository = new HibernateBibleTextRepository();
         BibleText storedText1 = bibleTextRepository.store(newBibleText1);
         BibleText storedText2 = bibleTextRepository.store(newBibleText2);
         

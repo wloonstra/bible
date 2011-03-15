@@ -13,14 +13,14 @@ public class BookRepositoryIntegrationTest {
 
     @Test
     public void getAllBooks() throws Exception {
-        BookRepository bookRepository = new BookRepository();
+        BookRepository bookRepository = new HibernateBookRepository();
         List<Book> books = bookRepository.getBooks();
         assertThat(books.size(), is(39));
     }
     
     @Test
     public void getBookByName() throws Exception {
-        BookRepository bookRepository = new BookRepository();
+        BookRepository bookRepository = new HibernateBookRepository();
         Book book = bookRepository.getBookWithName("Leviticus");
         assertThat(book.getName(), is("Leviticus"));
         

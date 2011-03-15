@@ -3,6 +3,10 @@ package nl.wiggertloonstra.bible.hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+/**
+ * SessionCreator provides the sessionFactory.
+ * @author wloonstra
+ */
 public enum SessionCreator {
     INSTANCE;
     

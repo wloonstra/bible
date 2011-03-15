@@ -1,47 +1,27 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static nl.wiggertloonstra.bible.hibernate.SessionCreator.getSessionFactory;
-
 import java.util.List;
 
 import nl.wiggertloonstra.bible.domain.BibleText;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+/**
+ * BibleTextRepository to store and retrieve bibleTexts.
+ * @author wloonstra
+ */
+public interface BibleTextRepository {
 
-public class BibleTextRepository {
-
-    public BibleText store(BibleText newBibleText) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        BibleText storedBibleText = null;
-        
-        try {
-            tx = session.beginTransaction();
-            storedBibleText = (BibleText) session.merge(newBibleText);
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-        return storedBibleText;
-    }
-
-    public List<BibleText> getBibleTextsForUser(int userId) {
-        Session session = getSessionFactory().openSession();
-        @SuppressWarnings("unchecked")
-        List<BibleText> bibleTextsForUser = (List<BibleText>) session.createCriteria(BibleText.class)
-               .add(Restrictions.eq("user.id", userId))
-               .list();
-        return bibleTextsForUser;
-    }
+    /**
+     * Store new bibleText.
+     * @param newBibleText to store
+     * @return stored bibleText
+     */
+    BibleText store(BibleText newBibleText);
+    
+    /**
+     * Retrieve all bible texts for a given user.
+     * @param userId for which the bible texts are retrieved
+     * @return list of retrieved bibleTexts
+     */
+    List<BibleText> getBibleTextsForUser(int userId);
 
 }

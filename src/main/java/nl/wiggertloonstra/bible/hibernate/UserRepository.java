@@ -7,6 +7,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+/**
+ * UserRepository to store and retrieve users.
+ * @author wloonstra
+ */
 public class UserRepository {
 
     public User store(User newUser) {

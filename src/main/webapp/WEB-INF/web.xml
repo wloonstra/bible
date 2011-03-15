@@ -13,8 +13,18 @@
         <servlet-class>nl.wiggertloonstra.bible.servlet.HomeServlet</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>addText</servlet-name>
+        <servlet-class>nl.wiggertloonstra.bible.servlet.AddTextServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>home</servlet-name>
         <url-pattern>/home.html</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>addText</servlet-name>
+        <url-pattern>/tekst-toevoegen</url-pattern>
     </servlet-mapping>
 </web-app>
