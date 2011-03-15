@@ -12,6 +12,7 @@ public class BibleTextBuilder {
     private int endChapter;
     private int endVerse;
     private User user;
+    private String motivation;
     
     public static BibleTextBuilder aBibleText() {
         return new BibleTextBuilder();
@@ -47,6 +48,11 @@ public class BibleTextBuilder {
         return this;
     }
     
+    public BibleTextBuilder withMotivation(String motivation) {
+        this.motivation = motivation;
+        return this;
+    }
+    
     public BibleText build() {
         BibleText bibleText = new BibleText();
         bibleText.setBook(book);
@@ -55,6 +61,7 @@ public class BibleTextBuilder {
         bibleText.setEndChapter(endChapter);
         bibleText.setEndVerse(endVerse);
         bibleText.setUser(user);
+        bibleText.setMotivation(motivation);
         return bibleText;
     }
 }

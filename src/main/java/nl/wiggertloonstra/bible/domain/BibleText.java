@@ -22,6 +22,9 @@ public class BibleText {
     
     @ManyToOne
     private User user;
+
+    private String motivation;
+    
     
     public BibleText() {
         // empty constructor
@@ -89,6 +92,14 @@ public class BibleText {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getMotivation() {
+        return motivation;
+    }
+
+    public void setMotivation(String motivation) {
+        this.motivation = motivation;
     }
 
 }

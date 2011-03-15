@@ -34,6 +34,7 @@ public class BibleTextRepositoryIntegrationTest {
                                  .startsAtVerse(10)
                                  .endsAtChapter(16)
                                  .endsWithVerse(20)
+                                 .withMotivation("Motivation")
                                  .addedBy(user)
                                  .build();
         
