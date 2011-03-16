@@ -1,3 +1,7 @@
+<%@ taglib prefix="mypage" tagdir="/WEB-INF/tags" %>
+
+<mypage:header/>
+
 <h3>Voeg hier je bijbeltekst toe</h3>
 
 <p>Geef de gegevens op.</p>

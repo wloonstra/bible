@@ -20,7 +20,7 @@
     
     <servlet-mapping>
         <servlet-name>home</servlet-name>
-        <url-pattern>/home.html</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     
     <servlet-mapping>
