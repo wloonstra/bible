@@ -14,6 +14,11 @@
     </servlet>
     
     <servlet>
+        <servlet-name>overview</servlet-name>
+        <servlet-class>nl.wiggertloonstra.bible.servlet.OverviewServlet</servlet-class>
+    </servlet>
+    
+    <servlet>
         <servlet-name>addText</servlet-name>
         <servlet-class>nl.wiggertloonstra.bible.servlet.AddTextServlet</servlet-class>
     </servlet>
@@ -24,7 +29,13 @@
     </servlet-mapping>
     
     <servlet-mapping>
+        <servlet-name>overview</servlet-name>
+        <url-pattern>/overzicht</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
         <servlet-name>addText</servlet-name>
         <url-pattern>/tekst-toevoegen</url-pattern>
     </servlet-mapping>
+    
 </web-app>

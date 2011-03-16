@@ -5,8 +5,8 @@ import nl.wiggertloonstra.bible.domain.Book;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
-import nl.wiggertloonstra.bible.hibernate.HibernateBibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.HibernateBookRepository;
+import nl.wiggertloonstra.bible.hibernate.factory.BibleTextRepositoryFactory;
 
 /**
  * NewTextWorker performs the actual adding of a new BibleText.
@@ -15,7 +15,7 @@ import nl.wiggertloonstra.bible.hibernate.HibernateBookRepository;
 public class NewTextWorker {
 
     private BookRepository bookRepository = new HibernateBookRepository();
-    private BibleTextRepository bibleTextRepository = new HibernateBibleTextRepository();
+    private BibleTextRepository bibleTextRepository = BibleTextRepositoryFactory.bibleTextRepository();
 
     /**
      * Add a bibleTextDto to the bibleTextRepository.

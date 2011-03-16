@@ -9,6 +9,7 @@ import nl.wiggertloonstra.bible.domain.BibleText;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -48,6 +49,17 @@ public class HibernateBibleTextRepository implements BibleTextRepository {
                .add(Restrictions.eq("user.id", userId))
                .list();
         return bibleTextsForUser;
+    }
+
+    @Override
+    public List<BibleText> getLatestBibleTexts(int numberOfResults) {
+        Session session = getSessionFactory().openSession();
+        @SuppressWarnings("unchecked")
+        List<BibleText> bibleTexts = (List<BibleText>) session.createCriteria(BibleText.class)
+               .addOrder(Order.desc("id"))
+               .setMaxResults(numberOfResults)
+               .list();
+        return bibleTexts;
     }
 
 }

@@ -23,5 +23,11 @@ public interface BibleTextRepository {
      * @return list of retrieved bibleTexts
      */
     List<BibleText> getBibleTextsForUser(int userId);
+    
+    /**
+     * @param numberOfResults to return
+     * @return list of latest ten bible texts 
+     */
+    List<BibleText> getLatestBibleTexts(int numberOfResults);
 
 }

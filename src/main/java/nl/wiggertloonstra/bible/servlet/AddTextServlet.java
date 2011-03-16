@@ -31,8 +31,7 @@ public class AddTextServlet extends HttpServlet {
         BibleTextDto newBibleText = createBibleTextDtoFrom(request);
         newTextWorker.add(newBibleText);
         
-        RequestDispatcher view = request.getRequestDispatcher("jsp/textOverview.jsp");
-        view.forward(request, response);
+        response.sendRedirect("overzicht");
     }
 
     private BibleTextDto createBibleTextDtoFrom(HttpServletRequest request) {
