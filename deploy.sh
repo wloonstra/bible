@@ -1,4 +1,4 @@
-mvn clean package
+mvn clean package -Dmaven.test.skip=true
 $CATALINA_HOME/bin/shutdown.sh
 rm $CATALINA_HOME/webapps/bible.war
 rm -rf $CATALINA_HOME/webapps/bible
