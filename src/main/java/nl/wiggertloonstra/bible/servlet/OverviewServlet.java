@@ -22,8 +22,7 @@ public class OverviewServlet extends HttpServlet {
         showBibleTexts(request, response);
     }
     
-    private void showBibleTexts(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+    private void showBibleTexts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         BibleTextRepository bibleTextRepository = BibleTextRepositoryFactory.bibleTextRepository();
         List<BibleText> latestBibleTexts = bibleTextRepository.getLatestBibleTexts(10);
         request.setAttribute("bibleTexts", latestBibleTexts);
