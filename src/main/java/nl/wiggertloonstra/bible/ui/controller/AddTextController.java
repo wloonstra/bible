@@ -1,37 +1,37 @@
-package nl.wiggertloonstra.bible.servlet;
+package nl.wiggertloonstra.bible.ui.controller;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import nl.wiggertloonstra.bible.collaborator.NewTextWorker;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
+import nl.wiggertloonstra.bible.ui.form.TextForm;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * Servlet to add a new BibleText to the system.
  * @author wloonstra
  */
-public class AddTextServlet extends HttpServlet {
+@Controller
+@RequestMapping("/tekst-toevoegen")
+public class AddTextController {
 
     private static final long serialVersionUID = 1543664454861739482L;
     private static final NewTextWorker newTextWorker = new NewTextWorker();
     
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher("jsp/addText.jsp");
-        view.forward(request, response);
+    @RequestMapping(method = RequestMethod.GET)
+    public String seePage() {
+        return "addText";
     }
     
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        BibleTextDto newBibleText = createBibleTextDtoFrom(request);
+    @RequestMapping(method = RequestMethod.POST)
+    public String addText(TextForm textForm) {
+        BibleTextDto newBibleText = new BibleTextDto();
         newTextWorker.add(newBibleText);
         
-        response.sendRedirect("overzicht");
+        return ("overzicht");
     }
 
     private BibleTextDto createBibleTextDtoFrom(HttpServletRequest request) {
