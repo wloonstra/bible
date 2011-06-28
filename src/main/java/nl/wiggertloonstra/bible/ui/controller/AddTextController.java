@@ -1,12 +1,10 @@
 package nl.wiggertloonstra.bible.ui.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import nl.wiggertloonstra.bible.collaborator.NewTextWorker;
-import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.ui.form.TextForm;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -22,27 +20,13 @@ public class AddTextController {
     private static final NewTextWorker newTextWorker = new NewTextWorker();
     
     @RequestMapping(method = RequestMethod.GET)
-    public String seePage() {
+    public String seePage(@ModelAttribute TextForm textForm) {
         return "addText";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addText(TextForm textForm) {
-        BibleTextDto newBibleText = new BibleTextDto();
-        newTextWorker.add(newBibleText);
-        
-        return ("overzicht");
+    public String addText(@ModelAttribute TextForm textForm) {
+        newTextWorker.add(textForm.toBibleTextDto());
+        return "redirect:overzicht";
     }
-
-    private BibleTextDto createBibleTextDtoFrom(HttpServletRequest request) {
-        BibleTextDto bibleTextDto = new BibleTextDto();
-        bibleTextDto.bookName = request.getParameter("book");
-        bibleTextDto.startChapter = request.getParameter("startChapter");
-        bibleTextDto.startVerse = request.getParameter("startVerse");
-        bibleTextDto.endChapter = request.getParameter("endChapter");
-        bibleTextDto.endVerse = request.getParameter("endVerse");
-        bibleTextDto.motivation = request.getParameter("motivation");
-        return bibleTextDto;
-    }
-
 }

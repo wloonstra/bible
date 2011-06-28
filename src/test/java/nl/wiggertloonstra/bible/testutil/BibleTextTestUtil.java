@@ -18,10 +18,10 @@ public class BibleTextTestUtil {
     public static BibleTextDto createDefaultBibleTextDto() {
         BibleTextDto bibleTextDto = new BibleTextDto();
         bibleTextDto.bookName = BOOK;
-        bibleTextDto.startChapter = Integer.toString(START_CHAPTER);
-        bibleTextDto.startVerse = Integer.toString(START_VERSE);
-        bibleTextDto.endChapter = Integer.toString(END_CHAPTER);
-        bibleTextDto.endVerse = Integer.toString(END_VERSE);
+        bibleTextDto.startChapter = START_CHAPTER;
+        bibleTextDto.startVerse = START_VERSE;
+        bibleTextDto.endChapter = END_CHAPTER;
+        bibleTextDto.endVerse = END_VERSE;
         bibleTextDto.motivation = MOTIVATION;
         return bibleTextDto;
     }

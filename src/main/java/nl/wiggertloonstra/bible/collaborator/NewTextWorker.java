@@ -27,15 +27,10 @@ public class NewTextWorker {
         BibleText newBibleText = new BibleText();
         newBibleText.setBook(book);
         newBibleText.setMotivation(bibleTextDto.motivation);
-        try {
-            newBibleText.setStartChapter(Integer.parseInt(bibleTextDto.startChapter));
-            newBibleText.setStartVerse(Integer.parseInt(bibleTextDto.startVerse));
-            newBibleText.setEndChapter(Integer.parseInt(bibleTextDto.endChapter));
-            newBibleText.setEndVerse(Integer.parseInt(bibleTextDto.endVerse));
-        } catch (NumberFormatException e) {
-            throw new IllegalStateException("Invalid input!", e);
-        }
-        
+        newBibleText.setStartChapter(bibleTextDto.startChapter);
+        newBibleText.setStartVerse(bibleTextDto.startVerse);
+        newBibleText.setEndChapter(bibleTextDto.endChapter);
+        newBibleText.setEndVerse(bibleTextDto.endVerse);
         bibleTextRepository.store(newBibleText);
     }
     

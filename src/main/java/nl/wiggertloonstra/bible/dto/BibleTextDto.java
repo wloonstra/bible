@@ -5,9 +5,9 @@ package nl.wiggertloonstra.bible.dto;
  */
 public class BibleTextDto {
     public String bookName;
-    public String startChapter;
-    public String startVerse;
-    public String endChapter;
-    public String endVerse;
+    public int startChapter;
+    public int startVerse;
+    public int endChapter;
+    public int endVerse;
     public String motivation;
 }
