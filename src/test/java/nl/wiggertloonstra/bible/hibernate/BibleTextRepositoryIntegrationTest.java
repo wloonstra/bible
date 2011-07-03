@@ -20,8 +20,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:test-applicationContext.xml"})
 public class BibleTextRepositoryIntegrationTest {
     
-    private static final User USER1 = new UserRepository().store(newUser("firstUser"));
-    private static final User USER2 = new UserRepository().store(newUser("secondUser"));
     private static final String NO_MOTIVATION = null;
     
     private static BibleText storedText1;
@@ -33,6 +31,9 @@ public class BibleTextRepositoryIntegrationTest {
     @Autowired
     private BookRepository bookRepository;
     
+    @Autowired
+    private UserRepository userRepository;
+    
     @Test
     public void retrieveBibleTexts() throws Exception {
         List<BibleText> bibleTexts = repository.getLatestBibleTexts(3);
@@ -41,10 +42,13 @@ public class BibleTextRepositoryIntegrationTest {
     
     @Test
     public void retrieveByUser() throws Exception {
-        placeTwoAdsFor(USER1);
-        placeAdsFor(1, USER2);
+        User user1 = userRepository.store(newUser("firstUser"));
+        User user2 = userRepository.store(newUser("secondUser"));
         
-        List<BibleText> bibleTexts = repository.getBibleTextsForUser(USER1.getId());
+        placeTwoAdsFor(user1);
+        placeAdsFor(1, user2);
+        
+        List<BibleText> bibleTexts = repository.getBibleTextsForUser(user1.getId());
         assertThat(bibleTexts.size(), is(2));
         assertThat(bibleTexts.get(0).getId(), is(storedText1.getId()));
         assertThat(bibleTexts.get(1).getId(), is(storedText2.getId()));

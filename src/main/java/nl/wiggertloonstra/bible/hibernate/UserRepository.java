@@ -1,42 +1,14 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static nl.wiggertloonstra.bible.hibernate.SessionCreator.getSessionFactory;
 import nl.wiggertloonstra.bible.domain.User;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  * UserRepository to store and retrieve users.
  * @author wloonstra
  */
-public class UserRepository {
+public interface UserRepository {
 
-    public User store(User newUser) {
-        Session session = getSessionFactory().openSession();
-        Transaction tx = null;
-        User storedUser = null;
-        
-        try {
-            tx = session.beginTransaction();
-            storedUser = (User) session.merge(newUser);
-            tx.commit();
-        }
-        catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        }
-        finally {
-            session.close();
-        }
-        return storedUser;
-    }
+    User store(User newUser);
+    User getUserWithId(int userId);
 
-    public User getUserWithId(int userId) {
-        Session session = getSessionFactory().openSession();
-        return (User) session.get(User.class, userId);
-    }
 }
