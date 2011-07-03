@@ -3,3 +3,5 @@
 <myTags:header/>
 
 Dit is de home pagina.
+
+<mypage:footer/>

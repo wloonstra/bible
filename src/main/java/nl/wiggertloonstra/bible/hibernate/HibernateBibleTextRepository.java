@@ -11,11 +11,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Component;
 
 /**
  * Hibernate implementation of BibleTextRepository.
  * @author wloonstra
  */
+@Component
 public class HibernateBibleTextRepository implements BibleTextRepository {
 
     @Override

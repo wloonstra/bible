@@ -2,7 +2,6 @@
 <%@ taglib prefix="mypage" tagdir="/WEB-INF/tags" %>
 
 <mypage:header/>
-
 <table>
     <c:forEach items="${bibleTexts}" var="bibleText">
         <tr>
@@ -11,3 +10,8 @@
     </c:forEach>
 </table>
 
+<div class='biblija'>
+    ${liveBibleText}
+</div>
+
+<mypage:footer/>

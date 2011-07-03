@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author wloonstra
  */
 @Controller
-@RequestMapping("/tekst-toevoegen")
+@RequestMapping("/tekst-toevoegen.html")
 public class AddTextController {
 
     private static final long serialVersionUID = 1543664454861739482L;
-    private static final NewTextWorker newTextWorker = new NewTextWorker();
+    private final NewTextWorker newTextWorker;
+    
+    public AddTextController(NewTextWorker newTextWorker) {
+        this.newTextWorker = newTextWorker;
+    }
     
     @RequestMapping(method = RequestMethod.GET)
     public String seePage(@ModelAttribute TextForm textForm) {

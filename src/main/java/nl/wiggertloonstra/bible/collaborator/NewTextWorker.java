@@ -6,16 +6,24 @@ import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.hibernate.HibernateBookRepository;
-import nl.wiggertloonstra.bible.hibernate.factory.BibleTextRepositoryFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * NewTextWorker performs the actual adding of a new BibleText.
  * @author wloonstra
  */
+@Component
 public class NewTextWorker {
 
     private BookRepository bookRepository = new HibernateBookRepository();
-    private BibleTextRepository bibleTextRepository = BibleTextRepositoryFactory.bibleTextRepository();
+    private final BibleTextRepository bibleTextRepository;
+    
+    @Autowired
+    public NewTextWorker(BibleTextRepository bibleTextRepository) {
+        this.bibleTextRepository = bibleTextRepository;
+    }
 
     /**
      * Add a bibleTextDto to the bibleTextRepository.
@@ -46,13 +54,4 @@ public class NewTextWorker {
     void setBookRepository(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
-    
-    /**
-     * Override for tests
-     * @param bibleTextRepository
-     */
-    void setBibleTextRepository(BibleTextRepository bibleTextRepository) {
-        this.bibleTextRepository = bibleTextRepository;
-    }
-
 }

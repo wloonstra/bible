@@ -7,7 +7,7 @@
 
 <p>Geef de gegevens op.</p>
 
-<form action="tekst-toevoegen" method="POST">
+<form action="tekst-toevoegen.html" method="POST">
     <spring:bind path="textForm.*">
         <label for="book">Bijbelboek</label>
         <input name="book" type="text"/> <br>
@@ -24,3 +24,5 @@
         <input type="submit" value="Voeg toe"/>
     </spring:bind>
 </form>
+
+<mypage:footer/>

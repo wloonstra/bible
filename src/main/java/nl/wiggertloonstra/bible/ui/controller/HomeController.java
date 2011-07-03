@@ -8,9 +8,8 @@ public class HomeController {
 
 	private static final long serialVersionUID = 7803277386849094314L;
 	
-	@RequestMapping("/home")
+	@RequestMapping("/home.html")
 	public String home() {
-	    System.out.println("I was here");
 		return "home";
 	}
 

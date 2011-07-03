@@ -21,12 +21,11 @@ public class AddNewTextWorkerTest {
     private final IMocksControl control = EasyMock.createControl();
     BookRepository bookRepository = control.createMock(BookRepository.class);
     BibleTextRepository bibleTextRepository = control.createMock(BibleTextRepository.class);
-    NewTextWorker addNewTextWorker = new NewTextWorker();
+    NewTextWorker addNewTextWorker = new NewTextWorker(bibleTextRepository);
     
     @Before
     public void setup() {
         addNewTextWorker.setBookRepository(bookRepository);
-        addNewTextWorker.setBibleTextRepository(bibleTextRepository);
     }
     
     @Test
@@ -57,8 +56,4 @@ public class AddNewTextWorkerTest {
         });
         return null;
     }
-
-
-
-
 }

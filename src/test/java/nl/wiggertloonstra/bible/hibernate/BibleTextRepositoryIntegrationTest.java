@@ -1,6 +1,5 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static nl.wiggertloonstra.bible.hibernate.factory.BibleTextRepositoryFactory.bibleTextRepository;
 import static nl.wiggertloonstra.bible.util.BibleTextBuilder.aBibleText;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -11,9 +10,14 @@ import nl.wiggertloonstra.bible.domain.BibleText;
 import nl.wiggertloonstra.bible.domain.Book;
 import nl.wiggertloonstra.bible.domain.User;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:test-applicationContext.xml"})
 public class BibleTextRepositoryIntegrationTest {
     
     private static final Book LEVITICUS = new HibernateBookRepository().getBookWithName("Leviticus");
@@ -24,25 +28,21 @@ public class BibleTextRepositoryIntegrationTest {
     private static BibleText storedText1;
     private static BibleText storedText2;
     
-    @BeforeClass
-    public static void setup() {
-        BibleTextRepository repository = bibleTextRepository();
-        storedText1 = repository.store(newBibleTextFor(LEVITICUS, 1, 2, 3, 4, NO_MOTIVATION, USER1));
-        storedText2 = repository.store(newBibleTextFor(LEVITICUS, 10, 11, 12, 13, "Motivation", USER1));
-        repository.store(newBibleTextFor(LEVITICUS, 100, 101, 102, 103, NO_MOTIVATION, USER2));
-    }
-
+    @Autowired
+    private BibleTextRepository repository;
+    
     @Test
     public void retrieveBibleTexts() throws Exception {
-        BibleTextRepository bibleTextRepository = bibleTextRepository();
-        List<BibleText> bibleTexts = bibleTextRepository.getLatestBibleTexts(3);
+        List<BibleText> bibleTexts = repository.getLatestBibleTexts(3);
         assertThat(bibleTexts.size(), is(3));
     }
     
     @Test
     public void retrieveByUser() throws Exception {
-        BibleTextRepository bibleTextRepository = bibleTextRepository();
-        List<BibleText> bibleTexts = bibleTextRepository.getBibleTextsForUser(USER1.getId());
+        placeTwoAdsFor(USER1);
+        placeAdsFor(1, USER2);
+        
+        List<BibleText> bibleTexts = repository.getBibleTextsForUser(USER1.getId());
         assertThat(bibleTexts.size(), is(2));
         assertThat(bibleTexts.get(0).getId(), is(storedText1.getId()));
         assertThat(bibleTexts.get(1).getId(), is(storedText2.getId()));
@@ -64,4 +64,16 @@ public class BibleTextRepositoryIntegrationTest {
         user.setUsername(userName);
         return user;
     }
+    
+    private void placeTwoAdsFor(User user) {
+        storedText1 = repository.store(newBibleTextFor(LEVITICUS, 1, 2, 3, 4, NO_MOTIVATION, user));
+        storedText2 = repository.store(newBibleTextFor(LEVITICUS, 10, 11, 12, 13, "Motivation", user));
+    }
+    
+    private void placeAdsFor(int number, User user) {
+        for (int index = 0; index < number; index++) {
+            repository.store(newBibleTextFor(LEVITICUS, 100, 101, 102, 103, NO_MOTIVATION, user));
+        }
+    }
+
 }
