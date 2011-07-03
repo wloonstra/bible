@@ -20,7 +20,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:test-applicationContext.xml"})
 public class BibleTextRepositoryIntegrationTest {
     
-    private static final Book LEVITICUS = new HibernateBookRepository().getBookWithName("Leviticus");
     private static final User USER1 = new UserRepository().store(newUser("firstUser"));
     private static final User USER2 = new UserRepository().store(newUser("secondUser"));
     private static final String NO_MOTIVATION = null;
@@ -30,6 +29,9 @@ public class BibleTextRepositoryIntegrationTest {
     
     @Autowired
     private BibleTextRepository repository;
+    
+    @Autowired
+    private BookRepository bookRepository;
     
     @Test
     public void retrieveBibleTexts() throws Exception {
@@ -66,14 +68,22 @@ public class BibleTextRepositoryIntegrationTest {
     }
     
     private void placeTwoAdsFor(User user) {
-        storedText1 = repository.store(newBibleTextFor(LEVITICUS, 1, 2, 3, 4, NO_MOTIVATION, user));
-        storedText2 = repository.store(newBibleTextFor(LEVITICUS, 10, 11, 12, 13, "Motivation", user));
+        Book leviticus = bookWithName("Leviticus");
+        
+        storedText1 = repository.store(newBibleTextFor(leviticus, 1, 2, 3, 4, NO_MOTIVATION, user));
+        storedText2 = repository.store(newBibleTextFor(leviticus, 10, 11, 12, 13, "Motivation", user));
     }
     
     private void placeAdsFor(int number, User user) {
+        Book leviticus = bookWithName("Leviticus");
         for (int index = 0; index < number; index++) {
-            repository.store(newBibleTextFor(LEVITICUS, 100, 101, 102, 103, NO_MOTIVATION, user));
+            repository.store(newBibleTextFor(leviticus, 100, 101, 102, 103, NO_MOTIVATION, user));
         }
+    }
+    
+    private Book bookWithName(String bookName) {
+        Book leviticus = bookRepository.getBookWithName(bookName);
+        return leviticus;
     }
 
 }

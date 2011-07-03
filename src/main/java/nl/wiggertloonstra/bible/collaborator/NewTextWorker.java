@@ -5,7 +5,6 @@ import nl.wiggertloonstra.bible.domain.Book;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
-import nl.wiggertloonstra.bible.hibernate.HibernateBookRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,12 +16,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class NewTextWorker {
 
-    private BookRepository bookRepository = new HibernateBookRepository();
     private final BibleTextRepository bibleTextRepository;
+    private final BookRepository bookRepository;
     
     @Autowired
-    public NewTextWorker(BibleTextRepository bibleTextRepository) {
+    public NewTextWorker(BibleTextRepository bibleTextRepository,
+                         BookRepository bookRepository) {
         this.bibleTextRepository = bibleTextRepository;
+        this.bookRepository = bookRepository;
     }
 
     /**
@@ -45,13 +46,5 @@ public class NewTextWorker {
 
     private Book retrieveBookFrom(String bookName) {
         return bookRepository.getBookWithName(bookName);
-    }
-    
-    /**
-     * Override for tests
-     * @param bookRepository
-     */
-    void setBookRepository(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
     }
 }

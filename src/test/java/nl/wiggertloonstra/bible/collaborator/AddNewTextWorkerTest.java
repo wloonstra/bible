@@ -13,7 +13,6 @@ import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import org.easymock.EasyMock;
 import org.easymock.IArgumentMatcher;
 import org.easymock.IMocksControl;
-import org.junit.Before;
 import org.junit.Test;
 
 public class AddNewTextWorkerTest {
@@ -21,12 +20,7 @@ public class AddNewTextWorkerTest {
     private final IMocksControl control = EasyMock.createControl();
     BookRepository bookRepository = control.createMock(BookRepository.class);
     BibleTextRepository bibleTextRepository = control.createMock(BibleTextRepository.class);
-    NewTextWorker addNewTextWorker = new NewTextWorker(bibleTextRepository);
-    
-    @Before
-    public void setup() {
-        addNewTextWorker.setBookRepository(bookRepository);
-    }
+    NewTextWorker addNewTextWorker = new NewTextWorker(bibleTextRepository, bookRepository);
     
     @Test
     public void addsNewTextToBibleTextRepository() throws Exception {

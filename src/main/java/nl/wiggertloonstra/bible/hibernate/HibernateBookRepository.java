@@ -8,11 +8,13 @@ import java.util.List;
 import nl.wiggertloonstra.bible.domain.Book;
 
 import org.hibernate.classic.Session;
+import org.springframework.stereotype.Component;
 
 /**
  * Hibernate implementation of BookRepository.
  * @author wloonstra
  */
+@Component
 public class HibernateBookRepository implements BookRepository {
     
     @Override

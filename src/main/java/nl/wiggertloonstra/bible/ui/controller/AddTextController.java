@@ -3,6 +3,7 @@ package nl.wiggertloonstra.bible.ui.controller;
 import nl.wiggertloonstra.bible.collaborator.NewTextWorker;
 import nl.wiggertloonstra.bible.ui.form.TextForm;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class AddTextController {
     private static final long serialVersionUID = 1543664454861739482L;
     private final NewTextWorker newTextWorker;
     
+    @Autowired
     public AddTextController(NewTextWorker newTextWorker) {
         this.newTextWorker = newTextWorker;
     }

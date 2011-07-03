@@ -10,6 +10,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class OverviewController {
     private WebDriver driver;
     private final BibleTextRepository bibleTextRepository;
 
+    @Autowired
     public OverviewController(BibleTextRepository bibleTextRepository) {
         this.bibleTextRepository = bibleTextRepository;
         driver = new HtmlUnitDriver();
