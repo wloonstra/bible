@@ -1,11 +1,11 @@
 package nl.wiggertloonstra.bible.testutil;
 
-import nl.wiggertloonstra.bible.domain.Book;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 
 public class BookTestUtil {
     
-    public static Book aBookWithName(String name) {
-        Book book = new Book();
+    public static BookDo aBookWithName(String name) {
+        BookDo book = new BookDo();
         book.setName(name);
         return book;
     }

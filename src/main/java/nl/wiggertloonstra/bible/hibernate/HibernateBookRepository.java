@@ -5,7 +5,7 @@ import static org.hibernate.criterion.Restrictions.like;
 
 import java.util.List;
 
-import nl.wiggertloonstra.bible.domain.Book;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 
 import org.hibernate.classic.Session;
 import org.springframework.stereotype.Component;
@@ -18,18 +18,18 @@ import org.springframework.stereotype.Component;
 public class HibernateBookRepository implements BookRepository {
     
     @Override
-    public List<Book> getBooks() {
+    public List<BookDo> getBooks() {
         Session session = SessionCreator.getSessionFactory().openSession();
         @SuppressWarnings("unchecked")
-        List<Book> books = (List<Book>) session.createCriteria(Book.class).list();
+        List<BookDo> books = (List<BookDo>) session.createCriteria(BookDo.class).list();
         return books;
     }
 
     @Override
-    public Book getBookWithName(String bookName) {
+    public BookDo getBookWithName(String bookName) {
         Session session = getSessionFactory().openSession();
-        return (Book) session
-                .createCriteria(Book.class)
+        return (BookDo) session
+                .createCriteria(BookDo.class)
                 .add(like("name", bookName))
                 .uniqueResult();
     }

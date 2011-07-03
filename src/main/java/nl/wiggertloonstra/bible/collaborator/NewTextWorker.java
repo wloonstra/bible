@@ -1,10 +1,10 @@
 package nl.wiggertloonstra.bible.collaborator;
 
-import nl.wiggertloonstra.bible.domain.BibleText;
-import nl.wiggertloonstra.bible.domain.Book;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,9 +31,9 @@ public class NewTextWorker {
      * @param bibleTextDto to add
      */
     public void add(BibleTextDto bibleTextDto) {
-        Book book = retrieveBookFrom(bibleTextDto.bookName);
+        BookDo book = retrieveBookFrom(bibleTextDto.bookName);
 
-        BibleText newBibleText = new BibleText();
+        BibleTextDo newBibleText = new BibleTextDo();
         newBibleText.setBook(book);
         newBibleText.setMotivation(bibleTextDto.motivation);
         newBibleText.setStartChapter(bibleTextDto.startChapter);
@@ -44,7 +44,7 @@ public class NewTextWorker {
     }
     
 
-    private Book retrieveBookFrom(String bookName) {
+    private BookDo retrieveBookFrom(String bookName) {
         return bookRepository.getBookWithName(bookName);
     }
 }

@@ -1,24 +1,24 @@
 package nl.wiggertloonstra.bible.util;
 
-import nl.wiggertloonstra.bible.domain.BibleText;
-import nl.wiggertloonstra.bible.domain.Book;
-import nl.wiggertloonstra.bible.domain.User;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 public class BibleTextBuilder {
     
-    private Book book;
+    private BookDo book;
     private int startChapter;
     private int startVerse;
     private int endChapter;
     private int endVerse;
-    private User user;
+    private UserDo user;
     private String motivation;
     
     public static BibleTextBuilder aBibleText() {
         return new BibleTextBuilder();
     }
     
-    public BibleTextBuilder inBook(Book book) {
+    public BibleTextBuilder inBook(BookDo book) {
         this.book = book;
         return this;
     }
@@ -43,7 +43,7 @@ public class BibleTextBuilder {
         return this;
     }
     
-    public BibleTextBuilder addedBy(User user) {
+    public BibleTextBuilder addedBy(UserDo user) {
         this.user = user;
         return this;
     }
@@ -53,8 +53,8 @@ public class BibleTextBuilder {
         return this;
     }
     
-    public BibleText build() {
-        BibleText bibleText = new BibleText();
+    public BibleTextDo build() {
+        BibleTextDo bibleText = new BibleTextDo();
         bibleText.setBook(book);
         bibleText.setStartChapter(startChapter);
         bibleText.setStartVerse(startVerse);

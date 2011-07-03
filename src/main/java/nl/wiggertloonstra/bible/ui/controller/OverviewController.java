@@ -3,8 +3,8 @@ package nl.wiggertloonstra.bible.ui.controller;
 import java.io.IOException;
 import java.util.List;
 
-import nl.wiggertloonstra.bible.domain.BibleText;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.By;
@@ -39,7 +39,7 @@ public class OverviewController {
     
     @RequestMapping("/overzicht.html")
     public String overview(Model model) throws ClientProtocolException, IOException {
-        List<BibleText> latestBibleTexts = bibleTextRepository.getLatestBibleTexts(10);
+        List<BibleTextDo> latestBibleTexts = bibleTextRepository.getLatestBibleTexts(10);
         model.addAttribute("bibleTexts", latestBibleTexts);
         
         model.addAttribute("liveBibleText", seleniumBibleText());

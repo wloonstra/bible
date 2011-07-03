@@ -1,11 +1,11 @@
-package nl.wiggertloonstra.bible.domain;
+package nl.wiggertloonstra.bible.hibernate.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity(name = "user")
-public class User {
+public class UserDo {
     
     @Id
     @GeneratedValue

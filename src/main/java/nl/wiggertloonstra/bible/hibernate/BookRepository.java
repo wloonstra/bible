@@ -2,7 +2,7 @@ package nl.wiggertloonstra.bible.hibernate;
 
 import java.util.List;
 
-import nl.wiggertloonstra.bible.domain.Book;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 
 /**
  * BookRepository to get books.
@@ -13,13 +13,13 @@ public interface BookRepository {
     /**
      * @return all books
      */
-    List<Book> getBooks();
+    List<BookDo> getBooks();
     
     /**
      * Return the book for a given name.
      * @param bookName to return the book for
      * @return book with given name
      */
-    Book getBookWithName(String bookName);
+    BookDo getBookWithName(String bookName);
 
 }

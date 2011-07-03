@@ -5,10 +5,10 @@ import static nl.wiggertloonstra.bible.testutil.BibleTextTestUtil.createDefaultB
 import static nl.wiggertloonstra.bible.testutil.BibleTextTestUtil.isEqualBibleTexts;
 import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithName;
 import static org.easymock.EasyMock.expect;
-import nl.wiggertloonstra.bible.domain.BibleText;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 import org.easymock.EasyMock;
 import org.easymock.IArgumentMatcher;
@@ -33,13 +33,13 @@ public class AddNewTextWorkerTest {
         control.verify();
     }
 
-    private BibleText aBibleTextWithCorrectFields() {
+    private BibleTextDo aBibleTextWithCorrectFields() {
         EasyMock.reportMatcher(new IArgumentMatcher() {
             
             @Override
             public boolean matches(Object bibleText) {
-                BibleText actualBibleText = (BibleText) bibleText;
-                BibleText expectedBibleText = createDefaultBibleText();
+                BibleTextDo actualBibleText = (BibleTextDo) bibleText;
+                BibleTextDo expectedBibleText = createDefaultBibleText();
                 return isEqualBibleTexts(expectedBibleText, actualBibleText);
             }
 

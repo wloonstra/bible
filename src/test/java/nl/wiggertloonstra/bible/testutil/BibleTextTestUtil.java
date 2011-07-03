@@ -3,8 +3,8 @@ package nl.wiggertloonstra.bible.testutil;
 import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithName;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import nl.wiggertloonstra.bible.domain.BibleText;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 public class BibleTextTestUtil {
     
@@ -26,8 +26,8 @@ public class BibleTextTestUtil {
         return bibleTextDto;
     }
     
-    public static BibleText createDefaultBibleText() {
-        BibleText bibleText = new BibleText();
+    public static BibleTextDo createDefaultBibleText() {
+        BibleTextDo bibleText = new BibleTextDo();
         bibleText.setBook(aBookWithName(BOOK));
         bibleText.setStartChapter(START_CHAPTER);
         bibleText.setStartVerse(START_VERSE);
@@ -37,11 +37,11 @@ public class BibleTextTestUtil {
         return bibleText;
     }
     
-    public static void assertEqualBibleTexts(BibleText text1, BibleText text2) {
+    public static void assertEqualBibleTexts(BibleTextDo text1, BibleTextDo text2) {
         assertThat(isEqualBibleTexts(text1, text2), is(true));
     }
     
-    public static boolean isEqualBibleTexts(BibleText text1, BibleText text2) {
+    public static boolean isEqualBibleTexts(BibleTextDo text1, BibleTextDo text2) {
         return 
             text1.getBook().getName().equals(text2.getBook().getName())
             && text1.getStartChapter() == text2.getStartChapter()

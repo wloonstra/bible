@@ -3,6 +3,9 @@ package nl.wiggertloonstra.bible.domain;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import nl.wiggertloonstra.bible.hibernate.SessionCreator;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -14,16 +17,16 @@ public class BibleTextRoundtripTest {
     public void bibleTextCanBeStoredAndRetrieved() throws Exception {
         Session session = SessionCreator.getSessionFactory().openSession();
         
-        Book genesis = retrieveBookGenesis(session);
-        User storedUser = createStoredUser(session);
-        BibleText bibleText = newBibleText(genesis, storedUser);
+        BookDo genesis = retrieveBookGenesis(session);
+        UserDo storedUser = createStoredUser(session);
+        BibleTextDo bibleText = newBibleText(genesis, storedUser);
         
         session.beginTransaction();
-        BibleText storedBibleText = (BibleText) session.merge(bibleText);
+        BibleTextDo storedBibleText = (BibleTextDo) session.merge(bibleText);
         session.getTransaction().commit();
         
         session.beginTransaction();
-        BibleText retrievedBibleText = (BibleText) session.get(BibleText.class, storedBibleText.getId());
+        BibleTextDo retrievedBibleText = (BibleTextDo) session.get(BibleTextDo.class, storedBibleText.getId());
         session.getTransaction().commit();
         
         assertThat(retrievedBibleText.getBook().getName(), is("Genesis"));
@@ -37,8 +40,8 @@ public class BibleTextRoundtripTest {
         SessionCreator.getSessionFactory().close();
     }
 
-    private BibleText newBibleText(Book genesis, User storedUser) {
-        BibleText bibleText = new BibleText();
+    private BibleTextDo newBibleText(BookDo genesis, UserDo storedUser) {
+        BibleTextDo bibleText = new BibleTextDo();
         bibleText.setBook(genesis);
         bibleText.setStartChapter(5);
         bibleText.setStartVerse(12);
@@ -49,17 +52,17 @@ public class BibleTextRoundtripTest {
         return bibleText;
     }
 
-    private Book retrieveBookGenesis(Session session) {
-        Book genesis = (Book) session.createCriteria(Book.class)
+    private BookDo retrieveBookGenesis(Session session) {
+        BookDo genesis = (BookDo) session.createCriteria(BookDo.class)
             .add(Restrictions.like("name", "Genesis")).uniqueResult();
         return genesis;
     }
     
-    private User createStoredUser(Session session) {
-        User user = new User();
+    private UserDo createStoredUser(Session session) {
+        UserDo user = new UserDo();
         user.setUsername("piet");
         session.beginTransaction();
-        User storedUser = (User) session.merge(user);
+        UserDo storedUser = (UserDo) session.merge(user);
         session.getTransaction().commit();
         return storedUser;
     }

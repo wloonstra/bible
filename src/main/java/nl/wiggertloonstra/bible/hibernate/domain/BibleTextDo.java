@@ -1,4 +1,4 @@
-package nl.wiggertloonstra.bible.domain;
+package nl.wiggertloonstra.bible.hibernate.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,14 +6,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "bibletext")
-public class BibleText {
+public class BibleTextDo {
     
     @Id
     @GeneratedValue
     private int id;
 
     @ManyToOne
-    private Book book;
+    private BookDo book;
     
     private int startChapter;
     private int endChapter;
@@ -21,16 +21,16 @@ public class BibleText {
     private int endVerse;
     
     @ManyToOne
-    private User user;
+    private UserDo user;
 
     private String motivation;
     
     
-    public BibleText() {
+    public BibleTextDo() {
         // empty constructor
     }
 
-    public BibleText(Book book, int startChapter, int endChapter, int startVerse, int endVerse) {
+    public BibleTextDo(BookDo book, int startChapter, int endChapter, int startVerse, int endVerse) {
         this.book = book;
         this.startChapter = startChapter;
         this.endChapter = endChapter;
@@ -46,11 +46,11 @@ public class BibleText {
         this.id = id;
     }
 
-    public Book getBook() {
+    public BookDo getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(BookDo book) {
         this.book = book;
     }
 
@@ -86,11 +86,11 @@ public class BibleText {
         this.endVerse = endVerse;
     }
     
-    public User getUser() {
+    public UserDo getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDo user) {
         this.user = user;
     }
 

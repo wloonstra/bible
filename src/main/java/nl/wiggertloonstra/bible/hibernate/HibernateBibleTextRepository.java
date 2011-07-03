@@ -4,7 +4,7 @@ import static nl.wiggertloonstra.bible.hibernate.SessionCreator.getSessionFactor
 
 import java.util.List;
 
-import nl.wiggertloonstra.bible.domain.BibleText;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -21,14 +21,14 @@ import org.springframework.stereotype.Component;
 public class HibernateBibleTextRepository implements BibleTextRepository {
 
     @Override
-    public BibleText store(BibleText newBibleText) {
+    public BibleTextDo store(BibleTextDo newBibleText) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
-        BibleText storedBibleText = null;
+        BibleTextDo storedBibleText = null;
         
         try {
             tx = session.beginTransaction();
-            storedBibleText = (BibleText) session.merge(newBibleText);
+            storedBibleText = (BibleTextDo) session.merge(newBibleText);
             tx.commit();
         }
         catch (HibernateException e) {
@@ -44,20 +44,20 @@ public class HibernateBibleTextRepository implements BibleTextRepository {
     }
 
     @Override
-    public List<BibleText> getBibleTextsForUser(int userId) {
+    public List<BibleTextDo> getBibleTextsForUser(int userId) {
         Session session = getSessionFactory().openSession();
         @SuppressWarnings("unchecked")
-        List<BibleText> bibleTextsForUser = (List<BibleText>) session.createCriteria(BibleText.class)
+        List<BibleTextDo> bibleTextsForUser = (List<BibleTextDo>) session.createCriteria(BibleTextDo.class)
                .add(Restrictions.eq("user.id", userId))
                .list();
         return bibleTextsForUser;
     }
 
     @Override
-    public List<BibleText> getLatestBibleTexts(int numberOfResults) {
+    public List<BibleTextDo> getLatestBibleTexts(int numberOfResults) {
         Session session = getSessionFactory().openSession();
         @SuppressWarnings("unchecked")
-        List<BibleText> bibleTexts = (List<BibleText>) session.createCriteria(BibleText.class)
+        List<BibleTextDo> bibleTexts = (List<BibleTextDo>) session.createCriteria(BibleTextDo.class)
                .addOrder(Order.desc("id"))
                .setMaxResults(numberOfResults)
                .list();

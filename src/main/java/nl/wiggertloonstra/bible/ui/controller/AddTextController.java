@@ -33,6 +33,6 @@ public class AddTextController {
     @RequestMapping(method = RequestMethod.POST)
     public String addText(@ModelAttribute TextForm textForm) {
         newTextWorker.add(textForm.toBibleTextDto());
-        return "redirect:overzicht";
+        return "redirect:overzicht.html";
     }
 }

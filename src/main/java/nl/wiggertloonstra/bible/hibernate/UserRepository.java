@@ -1,6 +1,6 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import nl.wiggertloonstra.bible.domain.User;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 /**
  * UserRepository to store and retrieve users.
@@ -8,7 +8,7 @@ import nl.wiggertloonstra.bible.domain.User;
  */
 public interface UserRepository {
 
-    User store(User newUser);
-    User getUserWithId(int userId);
+    UserDo store(UserDo newUser);
+    UserDo getUserWithId(int userId);
 
 }

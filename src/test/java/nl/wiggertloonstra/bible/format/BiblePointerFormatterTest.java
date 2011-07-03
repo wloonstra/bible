@@ -3,8 +3,8 @@ package nl.wiggertloonstra.bible.format;
 import static nl.wiggertloonstra.bible.util.BibleTextBuilder.aBibleText;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import nl.wiggertloonstra.bible.domain.BibleText;
-import nl.wiggertloonstra.bible.domain.Book;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class BiblePointerFormatterTest {
     
     @Test
     public void createNameForWithinOneChapter() throws Exception {
-        BibleText text = aBibleText()
+        BibleTextDo text = aBibleText()
                          .inBook(newBook("Exodus"))
                          .startsAtChapter(5)
                          .startsAtVerse(1)
@@ -26,7 +26,7 @@ public class BiblePointerFormatterTest {
 
     @Test
     public void createsNameForMoreChapters() throws Exception {
-        BibleText text = aBibleText()
+        BibleTextDo text = aBibleText()
                          .inBook(newBook("1 Petrus"))
                          .startsAtChapter(5)
                          .startsAtVerse(1)
@@ -40,7 +40,7 @@ public class BiblePointerFormatterTest {
     
     @Test
     public void shouldNotShowSameEndChapters() throws Exception {
-        BibleText text = aBibleText()
+        BibleTextDo text = aBibleText()
                          .inBook(newBook("1 Petrus"))
                          .startsAtChapter(5)
                          .startsAtVerse(1)
@@ -52,8 +52,8 @@ public class BiblePointerFormatterTest {
         assertThat(biblePointer, is("1 Petrus 5:1-23"));
     }
     
-    private Book newBook(String bookName) {
-        Book book = new Book();
+    private BookDo newBook(String bookName) {
+        BookDo book = new BookDo();
         book.setName(bookName);
         return book;
     }

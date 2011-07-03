@@ -5,7 +5,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import nl.wiggertloonstra.bible.domain.Book;
+import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,13 +22,13 @@ public class BookRepositoryIntegrationTest {
     
     @Test
     public void getAllBooks() throws Exception {
-        List<Book> books = bookRepository.getBooks();
+        List<BookDo> books = bookRepository.getBooks();
         assertThat(books.size(), is(39));
     }
     
     @Test
     public void getBookByName() throws Exception {
-        Book book = bookRepository.getBookWithName("Leviticus");
+        BookDo book = bookRepository.getBookWithName("Leviticus");
         assertThat(book.getName(), is("Leviticus"));
         
     }

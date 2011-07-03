@@ -1,7 +1,7 @@
 package nl.wiggertloonstra.bible.hibernate;
 
 import static nl.wiggertloonstra.bible.hibernate.SessionCreator.getSessionFactory;
-import nl.wiggertloonstra.bible.domain.User;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -14,14 +14,14 @@ public class HibernateUserRepository implements UserRepository {
     private HibernateUserRepository() {}
     
     @Override
-    public User store(User newUser) {
+    public UserDo store(UserDo newUser) {
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
-        User storedUser = null;
+        UserDo storedUser = null;
         
         try {
             tx = session.beginTransaction();
-            storedUser = (User) session.merge(newUser);
+            storedUser = (UserDo) session.merge(newUser);
             tx.commit();
         }
         catch (HibernateException e) {
@@ -37,8 +37,8 @@ public class HibernateUserRepository implements UserRepository {
     }
 
     @Override
-    public User getUserWithId(int userId) {
+    public UserDo getUserWithId(int userId) {
         Session session = getSessionFactory().openSession();
-        return (User) session.get(User.class, userId);
+        return (UserDo) session.get(UserDo.class, userId);
     }
 }

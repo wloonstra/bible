@@ -1,4 +1,4 @@
-package nl.wiggertloonstra.bible.domain;
+package nl.wiggertloonstra.bible.hibernate.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,13 +8,13 @@ import javax.persistence.Id;
  * @author wloonstra
  */
 @Entity(name = "book")
-public class Book {
+public class BookDo {
 
     @Id
     private int id;
     private String name;
     
-    public Book() {
+    public BookDo() {
         // empty constructor
     }
 

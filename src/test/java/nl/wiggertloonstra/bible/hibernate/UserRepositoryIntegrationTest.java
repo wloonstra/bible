@@ -2,7 +2,7 @@ package nl.wiggertloonstra.bible.hibernate;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import nl.wiggertloonstra.bible.domain.User;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +19,12 @@ public class UserRepositoryIntegrationTest {
     
     @Test
     public void storeAndRetrieveUser() throws Exception {
-        User newUser = new User();
+        UserDo newUser = new UserDo();
         newUser.setUsername("nieuwe user");
         
-        User storedUser = userRepository.store(newUser);
+        UserDo storedUser = userRepository.store(newUser);
         
-        User retrievedUser = userRepository.getUserWithId(storedUser.getId());
+        UserDo retrievedUser = userRepository.getUserWithId(storedUser.getId());
         assertThat(retrievedUser.getUsername(), is("nieuwe user"));
         
     }
