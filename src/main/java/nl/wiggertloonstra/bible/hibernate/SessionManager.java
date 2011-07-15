@@ -2,13 +2,15 @@ package nl.wiggertloonstra.bible.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.classic.Session;
+import org.springframework.stereotype.Component;
 
 /**
  * SessionCreator provides the sessionFactory.
  * @author wloonstra
  */
-public enum SessionCreator {
-    INSTANCE;
+@Component
+public class SessionManager {
     
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
@@ -22,7 +24,11 @@ public enum SessionCreator {
         }
     }
  
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+    
+    public Session session() {
+        return sessionFactory.openSession();
     }
 }

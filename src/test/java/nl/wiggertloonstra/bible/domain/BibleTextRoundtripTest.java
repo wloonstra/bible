@@ -2,7 +2,7 @@ package nl.wiggertloonstra.bible.domain;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import nl.wiggertloonstra.bible.hibernate.SessionCreator;
+import nl.wiggertloonstra.bible.hibernate.SessionManager;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
@@ -10,12 +10,21 @@ import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:test-applicationContext.xml"})
 public class BibleTextRoundtripTest {
+    
+    @Autowired
+    private SessionManager sessionManager;
     
     @Test
     public void bibleTextCanBeStoredAndRetrieved() throws Exception {
-        Session session = SessionCreator.getSessionFactory().openSession();
+        Session session = sessionManager.session();
         
         BookDo genesis = retrieveBookGenesis(session);
         UserDo storedUser = createStoredUser(session);
@@ -37,7 +46,7 @@ public class BibleTextRoundtripTest {
         assertThat(retrievedBibleText.getUser().getUsername(), is("piet"));
         assertThat(retrievedBibleText.getMotivation(), is("Daarom vind ik deze tekst mooi!"));
         
-        SessionCreator.getSessionFactory().close();
+        sessionManager.getSessionFactory().close();
     }
 
     private BibleTextDo newBibleText(BookDo genesis, UserDo storedUser) {

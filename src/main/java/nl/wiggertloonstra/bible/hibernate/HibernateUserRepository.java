@@ -1,21 +1,26 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static nl.wiggertloonstra.bible.hibernate.SessionCreator.getSessionFactory;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HibernateUserRepository implements UserRepository {
 
-    private HibernateUserRepository() {}
+    private final SessionManager sessionManager;
+
+    @Autowired
+    public HibernateUserRepository(SessionManager sessionManager) {
+        this.sessionManager = sessionManager;
+    }
     
     @Override
     public UserDo store(UserDo newUser) {
-        Session session = getSessionFactory().openSession();
+        Session session = sessionManager.session();
         Transaction tx = null;
         UserDo storedUser = null;
         
@@ -38,7 +43,7 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public UserDo getUserWithId(int userId) {
-        Session session = getSessionFactory().openSession();
+        Session session = sessionManager.session();
         return (UserDo) session.get(UserDo.class, userId);
     }
 }
