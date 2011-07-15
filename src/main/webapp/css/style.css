@@ -16,6 +16,31 @@ a:visited {
     color: red;
 }
 
+div#category-menu {
+    width: 130px;
+    border: 1px solid green;
+    float: left;
+    position: relative;
+}
+
+div#text-content {
+    position: block;
+    width: 400px;
+    margin-left: 150px;
+    border: 1px solid red;
+    position: relative;
+    float: reight
+}
+
+ul.menu {
+    list-style-type: none;
+    padding: 2px 15px;    
+}
+
+li.menu {
+    float: left;
+}
+
 div#container {
 	width:960px;
 	margin:0px auto;

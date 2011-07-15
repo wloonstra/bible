@@ -6,8 +6,15 @@ CREATE TABLE category(
 );
 
 INSERT INTO category VALUES
-    (1, 'Bemoediging'),
-    (2, 'Vertrouwen'),
-    (3, 'Nabijheid'),
-    (4, 'Liefde'),
-    (5, 'Aanwezigheid');
+    (1, 'Aanbidding'),
+    (2, 'Afwijzing'),
+    (3, 'Angst'),
+    (4, 'Bemoediging'),
+    (5, 'Bescherming'),
+    (6, 'Bezorgdheid'),
+    (7, 'Blijdschap'),
+    (8, 'Boosheid'),
+    (9, 'Dankbaarheid'),
+    (10, 'Dood'),
+    (11, 'Eenzaamheid'),
+    (12, 'Falen');

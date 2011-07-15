@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
+import nl.wiggertloonstra.bible.hibernate.CategoryRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 import org.apache.http.client.ClientProtocolException;
@@ -15,32 +16,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.google.common.collect.Lists;
-
 @Controller
 public class OverviewController {
 
     private static final String DEFAULT_BIBLIJA_URL = "http://www.biblija.net/biblija.cgi?l=nl&m=";
-    List<String> texts = Lists.newArrayList();
+    List<String> texts = TextOverviewHelper.defaultTexts();
     private WebDriver driver;
     private final BibleTextRepository bibleTextRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public OverviewController(BibleTextRepository bibleTextRepository) {
+    public OverviewController(BibleTextRepository bibleTextRepository,
+                              CategoryRepository categoryRepository) {
         this.bibleTextRepository = bibleTextRepository;
+        this.categoryRepository = categoryRepository;
         driver = new HtmlUnitDriver();
-        texts.add("Gen+1:1-10");
-        texts.add("Mat+2:1-5");
-        texts.add("Ruth+3:1-8");
-        texts.add("Mal+1:3-7");
-        texts.add("Joh+3:16");
-        texts.add("1+Kor+15:58");
     }
     
     @RequestMapping("/overzicht.html")
     public String overview(Model model) throws ClientProtocolException, IOException {
         List<BibleTextDo> latestBibleTexts = bibleTextRepository.getLatestBibleTexts(10);
         model.addAttribute("bibleTexts", latestBibleTexts);
+        model.addAttribute("categories", categoryRepository.getAllCategories());
         
         model.addAttribute("liveBibleText", seleniumBibleText());
         

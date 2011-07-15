@@ -22,8 +22,9 @@ public class HibernateCategoryRepository implements CategoryRepository {
     @Override
     public List<CategoryDo> getAllCategories() {
         Session session = sessionManager.session();
-        
-        return null;
+        @SuppressWarnings("unchecked")
+        List<CategoryDo> categories = (List<CategoryDo>) session.createCriteria(CategoryDo.class).list();
+        return categories;
     }
 
     @Override
