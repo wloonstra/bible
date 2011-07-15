@@ -15,5 +15,6 @@
         <mapping class="nl.wiggertloonstra.bible.hibernate.domain.BookDo"/>
         <mapping class="nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo"/>
         <mapping class="nl.wiggertloonstra.bible.hibernate.domain.UserDo"/>
+        <mapping class="nl.wiggertloonstra.bible.hibernate.domain.CategoryDo"/>
     </session-factory>
 </hibernate-configuration>
