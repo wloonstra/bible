@@ -22,20 +22,15 @@ public class BibleTextDo {
     
     @ManyToOne
     private UserDo user;
-
+    
     private String motivation;
+    
+    @ManyToOne
+    private CategoryDo category;
     
     
     public BibleTextDo() {
         // empty constructor
-    }
-
-    public BibleTextDo(BookDo book, int startChapter, int endChapter, int startVerse, int endVerse) {
-        this.book = book;
-        this.startChapter = startChapter;
-        this.endChapter = endChapter;
-        this.startVerse = startVerse;
-        this.endVerse = endVerse;
     }
 
     public int getId() {
@@ -102,4 +97,12 @@ public class BibleTextDo {
         this.motivation = motivation;
     }
 
+    public CategoryDo getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDo category) {
+        this.category = category;
+    }
+    
 }

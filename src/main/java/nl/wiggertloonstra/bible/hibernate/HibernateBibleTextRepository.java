@@ -70,4 +70,14 @@ public class HibernateBibleTextRepository implements BibleTextRepository {
         return bibleTexts;
     }
 
+    @Override
+    public List<BibleTextDo> getBibleTextsForCategory(Integer categoryId) {
+        Session session = sessionManager.session();
+        @SuppressWarnings("unchecked")
+        List<BibleTextDo> bibleTexts = (List<BibleTextDo>) session.createCriteria(BibleTextDo.class)
+               .add(Restrictions.eq("category.id", categoryId))
+               .list();
+        return bibleTexts;
+    }
+
 }

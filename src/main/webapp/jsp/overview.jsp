@@ -6,16 +6,17 @@
 <div id="category-menu">
     <ul class="menu">
         <c:forEach items="${categories}" var="category">
-            <li>${category.name}</li>
+            <li><a href="${category.url}">${category.name}</a></li>
         </c:forEach>
     </ul>
 </div>
 
 <div id="text-content">
+    <h2>${categoriesHeader}</h2>
     <table>
         <c:forEach items="${bibleTexts}" var="bibleText">
             <tr>
-                <td>${bibleText.book.name} ${bibleText.startChapter}:${bibleText.startVerse} - ${bibleText.endChapter}:${bibleText.endVerse}</td>
+                <td>${bibleText.textPointer}</td>
                 <td>${bibleText.motivation}</td>
         </c:forEach>
     </table>

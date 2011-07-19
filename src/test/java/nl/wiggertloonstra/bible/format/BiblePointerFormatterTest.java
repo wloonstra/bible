@@ -52,6 +52,31 @@ public class BiblePointerFormatterTest {
         assertThat(biblePointer, is("1 Petrus 5:1-23"));
     }
     
+    @Test
+    public void shouldNotShowEndChaptersOrEndVerseIf0() throws Exception {
+        BibleTextDo text = aBibleText()
+                         .inBook(newBook("1 Petrus"))
+                         .startsAtChapter(5)
+                         .startsAtVerse(1)
+                         .endsAtChapter(0)
+                         .endsWithVerse(0)
+                         .build();
+        String biblePointer = BiblePointerFormatter.format(text);
+
+        assertThat(biblePointer, is("1 Petrus 5:1"));
+        
+        text = aBibleText()
+             .inBook(newBook("1 Petrus"))
+             .startsAtChapter(5)
+             .startsAtVerse(1)
+             .endsAtChapter(5)
+             .endsWithVerse(1)
+             .build();
+        biblePointer = BiblePointerFormatter.format(text);
+
+        assertThat(biblePointer, is("1 Petrus 5:1"));
+    }
+    
     private BookDo newBook(String bookName) {
         BookDo book = new BookDo();
         book.setName(bookName);

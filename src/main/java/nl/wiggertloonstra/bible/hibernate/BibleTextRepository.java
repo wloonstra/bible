@@ -30,4 +30,10 @@ public interface BibleTextRepository {
      */
     List<BibleTextDo> getLatestBibleTexts(int numberOfResults);
 
+    /**
+     * @param categoryId to retrieve bibleTexts for
+     * @return list of bibletexts related to this category
+     */
+    List<BibleTextDo> getBibleTextsForCategory(Integer categoryId);
+
 }

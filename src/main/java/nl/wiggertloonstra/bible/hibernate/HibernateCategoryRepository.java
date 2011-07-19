@@ -2,7 +2,6 @@ package nl.wiggertloonstra.bible.hibernate;
 
 import java.util.List;
 
-import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.CategoryDo;
 
 import org.hibernate.Session;
@@ -28,8 +27,9 @@ public class HibernateCategoryRepository implements CategoryRepository {
     }
 
     @Override
-    public List<BibleTextDo> getCategoryFor(int id) {
-        return null;
+    public CategoryDo getCategoryFor(int id) {
+        Session session = sessionManager.session();
+        return (CategoryDo) session.get(CategoryDo.class, id);
     }
 
 }
