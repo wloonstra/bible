@@ -9,7 +9,9 @@ import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.CategoryDo;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 import nl.wiggertloonstra.bible.ui.view.CategoryView;
+import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -26,7 +28,7 @@ import com.google.common.collect.Lists;
 @Controller
 public class OverviewController {
 
-    private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW = new Function<BibleTextDo, BibleTextView>() {
+    private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW_AND = new Function<BibleTextDo, BibleTextView>() {
         @Override
         public BibleTextView apply(BibleTextDo from) {
             return new BibleTextView(from);
@@ -86,11 +88,23 @@ public class OverviewController {
             bibleTextDos = bibleTextRepository.getLatestBibleTexts(10);
         }
         
-        return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW);
+        makeSureTextsAreAvailableFor(bibleTextDos);
+        
+        return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW_AND);
     }
 
-    private String seleniumBibleText() {
-        driver.get(DEFAULT_BIBLIJA_URL + texts.get((int) (Math.random() * texts.size())));
+    private void makeSureTextsAreAvailableFor(List<BibleTextDo> bibleTextDos) {
+        for (BibleTextDo bibleTextDo : bibleTextDos) {
+            if (StringUtils.isBlank(bibleTextDo.getText())) {
+                String text = seleniumBibleText(bibleTextDo);
+                bibleTextDo.setText(text);
+                bibleTextRepository.store(bibleTextDo);
+            }
+        }
+    }
+
+    private String seleniumBibleText(BibleTextDo bibleTextDo) {
+        driver.get(DEFAULT_BIBLIJA_URL + BiblePointerFormatter.format(bibleTextDo));
         return driver.findElement(By.xpath("//table/tbody/tr/td/table/tbody/tr/td[@class = 'text']")).getText();
     }
 }

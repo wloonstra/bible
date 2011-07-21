@@ -19,7 +19,8 @@ public class BibleTextDo {
     private int endChapter;
     private int startVerse;
     private int endVerse;
-    
+    private String text;
+
     @ManyToOne
     private UserDo user;
     
@@ -103,6 +104,14 @@ public class BibleTextDo {
 
     public void setCategory(CategoryDo category) {
         this.category = category;
+    }
+    
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
     
 }

@@ -18,5 +18,9 @@ public class BibleTextView {
     public String getMotivation() {
         return bibleTextDo.getMotivation();
     }
+    
+    public String getText() {
+        return bibleTextDo.getText();
+    }
 
 }

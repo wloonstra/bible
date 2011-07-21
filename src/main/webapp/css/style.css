@@ -1,11 +1,19 @@
+/* Colors:
+	#FF0000 red
+	#FF7400 orange
+	#009999 blueish
+	#00cc00 green
+	*/
+
 body, td, p, a {
     font-family: verdana, arial, sans-serif;
     font-size: 11px;
+    vertical-align: top;
 }
 
 a {
     text-decoration: none;
-    color: red;
+    color: #ff7744;
 }
 
 a:hover {
@@ -13,12 +21,11 @@ a:hover {
 }
 
 a:visited {
-    color: red;
+    color: #ff7744;
 }
 
 div#category-menu {
     width: 130px;
-    border: 1px solid green;
     float: left;
     position: relative;
 }
@@ -27,9 +34,23 @@ div#text-content {
     position: block;
     width: 700px;
     margin-left: 150px;
-    border: 1px solid red;
     position: relative;
     float: reight
+}
+
+
+td.bible-pointer {
+    width: 150px;
+}
+    
+td.bible-text {
+    width: 500px;
+}
+
+.bible-motivation {
+    display: block;
+    font-style: italic;
+    color: grey;
 }
 
 ul.menu {
@@ -53,5 +74,4 @@ div#container {
 div.biblija {
     margin: 5px;
     padding: 5px;
-    border: 1px solid grey;
 }

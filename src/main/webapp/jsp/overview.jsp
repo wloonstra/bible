@@ -16,8 +16,11 @@
     <table>
         <c:forEach items="${bibleTexts}" var="bibleText">
             <tr>
-                <td>${bibleText.textPointer}</td>
-                <td>${bibleText.motivation}</td>
+                <td class="bible-pointer">${bibleText.textPointer}</td>
+                <td class="bible-text">
+                    ${bibleText.text}
+                    <span class="bible-motivation">${bibleText.motivation}</span>
+                </td>
         </c:forEach>
     </table>
 </div>

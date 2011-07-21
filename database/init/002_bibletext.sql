@@ -7,6 +7,7 @@ CREATE TABLE bibletext (
     startVerse INT,
     endChapter INT,
     endVerse INT,
+    text TEXT,
     user_id INT,
     motivation TEXT,
     category_id INT);
