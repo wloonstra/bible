@@ -66,7 +66,7 @@ public class OverviewController {
         if (categoryId > 0) {
             return categoryRepository.getCategoryFor(categoryId).getName();
         } else {
-            return "Alle categorie‘n";
+            return "Alle categorieen";
         }
     }
 

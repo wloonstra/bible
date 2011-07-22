@@ -23,7 +23,7 @@ public class BookRepositoryIntegrationTest {
     @Test
     public void getAllBooks() throws Exception {
         List<BookDo> books = bookRepository.getBooks();
-        assertThat(books.size(), is(39));
+        assertThat(books.size(), is(66));
     }
     
     @Test
