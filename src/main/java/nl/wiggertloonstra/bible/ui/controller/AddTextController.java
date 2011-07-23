@@ -1,7 +1,7 @@
 package nl.wiggertloonstra.bible.ui.controller;
 
 import nl.wiggertloonstra.bible.collaborator.NewTextWorker;
-import nl.wiggertloonstra.bible.ui.form.TextForm;
+import nl.wiggertloonstra.bible.ui.form.TextFormInput;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +26,12 @@ public class AddTextController {
     }
     
     @RequestMapping(method = RequestMethod.GET)
-    public String seePage(@ModelAttribute TextForm textForm) {
+    public String seePage(@ModelAttribute TextFormInput textForm) {
         return "addText";
     }
     
     @RequestMapping(method = RequestMethod.POST)
-    public String addText(@ModelAttribute TextForm textForm) {
+    public String addText(@ModelAttribute TextFormInput textForm) {
         newTextWorker.add(textForm.toBibleTextDto());
         return "redirect:overzicht.html";
     }

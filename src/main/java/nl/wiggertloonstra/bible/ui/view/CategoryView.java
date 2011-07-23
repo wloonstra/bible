@@ -20,4 +20,8 @@ public class CategoryView {
     public String getUrl() {
         return URLS.overview() + "?categoryId=" + categoryDo.getId();
     }
+    
+    public int getId() {
+        return categoryDo.getId();
+    }
 }

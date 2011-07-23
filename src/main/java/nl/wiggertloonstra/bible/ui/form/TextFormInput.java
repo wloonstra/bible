@@ -2,7 +2,7 @@ package nl.wiggertloonstra.bible.ui.form;
 
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 
-public class TextForm {
+public class TextFormInput {
     
     private String book;
     private int startChapter;
