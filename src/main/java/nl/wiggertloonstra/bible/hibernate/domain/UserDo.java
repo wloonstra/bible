@@ -11,6 +11,7 @@ public class UserDo {
     @GeneratedValue
     private Integer id;
     private String username;
+    private String email;
 
     public Integer getId() {
         return id;
@@ -26,5 +27,13 @@ public class UserDo {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

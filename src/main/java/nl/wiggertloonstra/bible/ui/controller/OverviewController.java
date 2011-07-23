@@ -14,6 +14,7 @@ import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.ClientProtocolException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,11 @@ public class OverviewController {
 
     private String seleniumBibleText(BibleTextDo bibleTextDo) {
         driver.get(DEFAULT_BIBLIJA_URL + BiblePointerFormatter.format(bibleTextDo));
-        return driver.findElement(By.xpath("//table/tbody/tr/td/table/tbody/tr/td[@class = 'text']")).getText();
+        try {
+            return driver.findElement(By.xpath("//table/tbody/tr/td/table/tbody/tr/td[@class = 'text']")).getText();
+        } catch (NoSuchElementException e) {
+            return "(Tekst niet gevonden)";
+        }
+        
     }
 }

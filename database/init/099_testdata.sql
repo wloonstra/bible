@@ -1,4 +1,10 @@
+TRUNCATE TABLE user;
 TRUNCATE TABLE bibletext;
+
+INSERT INTO user (
+    username, email
+) VALUES
+('wiggert','test@example.com');
 
 INSERT INTO bibletext (
     book_id, startChapter, startVerse, endChapter, endVerse, text, user_id, motivation, category_id
@@ -18,7 +24,7 @@ INSERT INTO bibletext (
 (62, 3, 1, 0, 0, '', 1, '', 2),
 (20, 18, 24, 0, 0, '', 1, '', 2),
 (49, 1, 4, 0, 0, '', 1, '', 2),
-(19, 94, 14, 94, '', 15, 1, '', 2),
+(19, 94, 14, 94, 15, '', 1, '', 2),
 (19, 103, 17, 103, 18, '', 1, '', 3),
 (19, 138, 3, 0, 0, '', 1, '', 3),
 (19, 138, 7, 0, 0, '', 1, '', 3),
