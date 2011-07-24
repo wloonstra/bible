@@ -29,7 +29,7 @@ public class NewTextWorkerTest {
     @Test
     public void addsNewTextToBibleTextRepository() throws Exception {
         BibleTextDto bibleTextDto = createDefaultBibleTextDto();
-        expect(bookRepository.getBookWithName("Genesis")).andReturn(aBookWithId(1));
+        expect(bookRepository.getBookWithId(1)).andReturn(aBookWithId(1));
         expect(bibleTextRepository.store(aBibleTextWithCorrectFields())).andReturn(null);
         expect(categoryService.getCategoryDoFor(0)).andReturn(null);
         expect(userService.userExistingOrNewWithEmail(null)).andReturn(null);

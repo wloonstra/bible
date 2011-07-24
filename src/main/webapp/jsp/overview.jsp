@@ -6,7 +6,7 @@
 <div id="category-menu">
     <ul class="menu">
         <c:forEach items="${categories}" var="category">
-            <li><a href="${category.url}">${category.name}</a></li>
+            <li><a href="${category.url}">${category.name} (${category.numberOfTexts})</a></li>
         </c:forEach>
     </ul>
 </div>
@@ -26,6 +26,7 @@
                     ${bibleText.text}
                     <span class="bible-motivation">${bibleText.motivation}</span>
                 </td>
+            </tr>
         </c:forEach>
     </table>
 </div>

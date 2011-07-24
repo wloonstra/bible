@@ -43,7 +43,7 @@ public class BibleTextTestUtil {
     
     public static boolean isEqualBibleTexts(BibleTextDo text1, BibleTextDo text2) {
         return 
-            text1.getBook().getName().equals(text2.getBook().getName())
+            text1.getBook().getId() == (text2.getBook().getId())
             && text1.getStartChapter() == text2.getStartChapter()
             && text1.getStartVerse() == text2.getStartVerse() 
             && text1.getEndChapter() == text2.getEndChapter()

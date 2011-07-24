@@ -1,9 +1,6 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,20 +11,16 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test-applicationContext.xml"})
 @TransactionConfiguration(defaultRollback=true)
-public class UserRepositoryIntegrationTest {
+public class CategoryRepositoryTest {
     
     @Autowired
-    UserRepository userRepository;
+    private CategoryRepository categoryRepository;
     
     @Test
-    public void storeAndRetrieveUser() throws Exception {
-        UserDo newUser = new UserDo();
-        newUser.setUsername("nieuwe user");
+    public void checkCount() throws Exception {
+        System.out.println(categoryRepository.getNumberOfTextsFor(1));
+        Assert.assertEquals(1+1, 2);
         
-        UserDo storedUser = userRepository.store(newUser);
-        
-        UserDo retrievedUser = userRepository.getUserWithId(storedUser.getId());
-        assertThat(retrievedUser.getUsername(), is("nieuwe user"));
         
     }
 

@@ -1,5 +1,6 @@
 package nl.wiggertloonstra.bible.hibernate;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import nl.wiggertloonstra.bible.hibernate.domain.CategoryDo;
@@ -30,6 +31,14 @@ public class HibernateCategoryRepository implements CategoryRepository {
     public CategoryDo getCategoryFor(int id) {
         Session session = sessionManager.session();
         return (CategoryDo) session.get(CategoryDo.class, id);
+    }
+
+    @Override
+    public int getNumberOfTextsFor(int id) {
+        Session session = sessionManager.session();
+        return ((BigInteger) session.createSQLQuery("SELECT COUNT(*) FROM bibletext WHERE category_id = :categoryId")
+                                .setInteger("categoryId", id)
+                                .uniqueResult()).intValue();
     }
 
 }

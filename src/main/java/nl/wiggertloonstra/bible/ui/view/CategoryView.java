@@ -9,8 +9,11 @@ public class CategoryView {
     
     private final CategoryDo categoryDo;
 
-    public CategoryView(CategoryDo categoryDo) {
+    private final int numberOfTexts;
+
+    public CategoryView(CategoryDo categoryDo, int numberOfTexts) {
         this.categoryDo = categoryDo;
+        this.numberOfTexts = numberOfTexts;
     }
     
     public String getName() {
@@ -23,5 +26,9 @@ public class CategoryView {
     
     public int getId() {
         return categoryDo.getId();
+    }
+    
+    public int getNumberOfTexts() {
+        return numberOfTexts;
     }
 }

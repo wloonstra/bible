@@ -19,7 +19,8 @@ public class CategoryServiceImpl implements CategoryService {
     private Function<CategoryDo, CategoryView> TO_CATEGORY_VIEW = new Function<CategoryDo, CategoryView>() {
         @Override
         public CategoryView apply(CategoryDo from) {
-            return new CategoryView(from);
+            int numberOfTexts = categoryRepository.getNumberOfTextsFor(from.getId());
+            return new CategoryView(from, numberOfTexts);
         }
     };
     
@@ -31,7 +32,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryView> getAllCategories() {
         return Lists.transform(categoryRepository.getAllCategories(), TO_CATEGORY_VIEW);
-        
     }
     
     @Override

@@ -8,5 +8,6 @@ public interface CategoryRepository {
     
     List<CategoryDo> getAllCategories();
     CategoryDo getCategoryFor(int id);
+    int getNumberOfTextsFor(int id);
     
 }
