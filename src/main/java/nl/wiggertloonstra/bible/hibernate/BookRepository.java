@@ -22,4 +22,7 @@ public interface BookRepository {
      */
     BookDo getBookWithName(String bookName);
 
+    
+    BookDo getBookWithId(int id);
+
 }

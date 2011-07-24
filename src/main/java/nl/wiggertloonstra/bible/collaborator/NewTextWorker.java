@@ -58,11 +58,11 @@ public class NewTextWorker {
     }
     
     private BookDo retrieveBookFrom(BibleTextDto bibleTextDto) {
-        return bookRepository.getBookWithName(bibleTextDto.bookName);
+        return bookRepository.getBookWithId(bibleTextDto.bookId);
     }
 
     private CategoryDo retrieveCategoryFrom(BibleTextDto bibleTextDto) {
-        return categoryService.getCategoryDoFor(bibleTextDto.category);
+        return categoryService.getCategoryDoFor(bibleTextDto.categoryId);
     }
 
     private UserDo retrieveUserFrom(BibleTextDto bibleTextDto) {

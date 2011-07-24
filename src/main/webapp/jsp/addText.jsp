@@ -11,7 +11,11 @@
 <form action="tekst-toevoegen.html" method="POST">
     <spring:bind path="textFormInput.*">
         <label for="book">Bijbelboek</label>
-        <input name="book" type="text"/> <br>
+        <select name="book">
+            <c:forEach items="${textFormData.books}" var="book">
+                 <option value="${book.id}">${book.name}</option>
+            </c:forEach>
+        </select> <br>
         
         <label for="startChapter">start hoofdstuk</label>
         <input name="startChapter" type="text"/> <br>

@@ -3,7 +3,7 @@ package nl.wiggertloonstra.bible.collaborator;
 import static nl.wiggertloonstra.bible.testutil.BibleTextTestUtil.createDefaultBibleText;
 import static nl.wiggertloonstra.bible.testutil.BibleTextTestUtil.createDefaultBibleTextDto;
 import static nl.wiggertloonstra.bible.testutil.BibleTextTestUtil.isEqualBibleTexts;
-import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithName;
+import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithId;
 import static org.easymock.EasyMock.expect;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
@@ -29,7 +29,7 @@ public class NewTextWorkerTest {
     @Test
     public void addsNewTextToBibleTextRepository() throws Exception {
         BibleTextDto bibleTextDto = createDefaultBibleTextDto();
-        expect(bookRepository.getBookWithName("Genesis")).andReturn(aBookWithName("Genesis"));
+        expect(bookRepository.getBookWithName("Genesis")).andReturn(aBookWithId(1));
         expect(bibleTextRepository.store(aBibleTextWithCorrectFields())).andReturn(null);
         expect(categoryService.getCategoryDoFor(0)).andReturn(null);
         expect(userService.userExistingOrNewWithEmail(null)).andReturn(null);

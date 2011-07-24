@@ -1,8 +1,7 @@
 package nl.wiggertloonstra.bible.ui.controller;
 
 import nl.wiggertloonstra.bible.collaborator.NewTextWorker;
-import nl.wiggertloonstra.bible.service.CategoryServiceImpl;
-import nl.wiggertloonstra.bible.ui.form.TextFormData;
+import nl.wiggertloonstra.bible.ui.form.TextFormDataFactory;
 import nl.wiggertloonstra.bible.ui.form.TextFormInput;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,19 +21,19 @@ public class AddTextController {
 
     private static final long serialVersionUID = 1543664454861739482L;
     private final NewTextWorker newTextWorker;
-    private final CategoryServiceImpl categoryService;
+    private final TextFormDataFactory textFormDataFactory;
     
     @Autowired
     public AddTextController(NewTextWorker newTextWorker,
-                             CategoryServiceImpl categoryService) {
+                             TextFormDataFactory textFormDataFactory) {
         this.newTextWorker = newTextWorker;
-        this.categoryService = categoryService;
+        this.textFormDataFactory = textFormDataFactory;
     }
     
     @RequestMapping(method = RequestMethod.GET)
     public String seePage(@ModelAttribute TextFormInput textFormInput,
                           Model model) {
-        model.addAttribute("textFormData", new TextFormData(categoryService.getAllCategories()));
+        model.addAttribute("textFormData", textFormDataFactory.newTextFormData());
         return "addText";
     }
     

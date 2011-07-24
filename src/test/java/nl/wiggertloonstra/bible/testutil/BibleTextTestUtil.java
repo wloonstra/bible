@@ -1,6 +1,6 @@
 package nl.wiggertloonstra.bible.testutil;
 
-import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithName;
+import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithId;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
@@ -8,7 +8,7 @@ import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 public class BibleTextTestUtil {
     
-    public static final String BOOK = "Genesis";
+    public static final int BOOK = 1;
     public static final int START_CHAPTER = 1;
     public static final int START_VERSE = 2;
     public static final int END_CHAPTER = 3;
@@ -17,7 +17,7 @@ public class BibleTextTestUtil {
 
     public static BibleTextDto createDefaultBibleTextDto() {
         BibleTextDto bibleTextDto = new BibleTextDto();
-        bibleTextDto.bookName = BOOK;
+        bibleTextDto.bookId = BOOK;
         bibleTextDto.startChapter = START_CHAPTER;
         bibleTextDto.startVerse = START_VERSE;
         bibleTextDto.endChapter = END_CHAPTER;
@@ -28,7 +28,7 @@ public class BibleTextTestUtil {
     
     public static BibleTextDo createDefaultBibleText() {
         BibleTextDo bibleText = new BibleTextDo();
-        bibleText.setBook(aBookWithName(BOOK));
+        bibleText.setBook(aBookWithId(BOOK));
         bibleText.setStartChapter(START_CHAPTER);
         bibleText.setStartVerse(START_VERSE);
         bibleText.setEndChapter(END_CHAPTER);

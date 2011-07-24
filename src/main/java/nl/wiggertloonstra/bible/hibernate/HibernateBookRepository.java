@@ -40,4 +40,10 @@ public class HibernateBookRepository implements BookRepository {
                 .add(like("name", bookName))
                 .uniqueResult();
     }
+
+    @Override
+    public BookDo getBookWithId(int id) {
+        Session session = sessionManager.session();
+        return (BookDo) session.get(BookDo.class, id);
+    }
 }
