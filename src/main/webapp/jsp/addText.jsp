@@ -27,18 +27,15 @@
         
         <label for="motivation">Motivatie</label>
         <textarea name="motivation"></textarea> <br>
-    </spring:bind>
     
-    <spring:bind path="textFormInput.category">
         <label for="category">Category</label>
         <select name="category">
-            <c:forEach items="textFormData.categories" var="category">
+            <c:forEach items="${textFormData.categories}" var="category">
                  <option value="${category.id}">${category.name}</option>
             </c:forEach>
         </select>
-    </spring:bind>
-     
         <input type="submit" value="Voeg toe"/>
+    </spring:bind>
 </form>
 
 <mypage:footer/>
