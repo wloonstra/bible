@@ -71,6 +71,7 @@ li.menu {
 
 div#container {
 	width:960px;
+	min-height: 400px;
 	margin:0px auto;
 	text-align:left;
 	padding:15px;
