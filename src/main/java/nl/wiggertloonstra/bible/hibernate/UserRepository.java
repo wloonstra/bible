@@ -10,5 +10,6 @@ public interface UserRepository {
 
     UserDo store(UserDo newUser);
     UserDo getUserWithId(int userId);
+    UserDo getUserWithEmail(String email);
 
 }

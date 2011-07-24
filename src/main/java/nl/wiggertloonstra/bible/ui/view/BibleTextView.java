@@ -22,5 +22,9 @@ public class BibleTextView {
     public String getText() {
         return bibleTextDo.getText();
     }
+    
+    public String getEmail() {
+        return bibleTextDo.getUser().getUsername();
+    }
 
 }

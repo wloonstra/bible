@@ -1,7 +1,7 @@
 package nl.wiggertloonstra.bible.ui.controller;
 
 import nl.wiggertloonstra.bible.collaborator.NewTextWorker;
-import nl.wiggertloonstra.bible.service.CategoryService;
+import nl.wiggertloonstra.bible.service.CategoryServiceImpl;
 import nl.wiggertloonstra.bible.ui.form.TextFormData;
 import nl.wiggertloonstra.bible.ui.form.TextFormInput;
 
@@ -22,11 +22,11 @@ public class AddTextController {
 
     private static final long serialVersionUID = 1543664454861739482L;
     private final NewTextWorker newTextWorker;
-    private final CategoryService categoryService;
+    private final CategoryServiceImpl categoryService;
     
     @Autowired
     public AddTextController(NewTextWorker newTextWorker,
-                             CategoryService categoryService) {
+                             CategoryServiceImpl categoryService) {
         this.newTextWorker = newTextWorker;
         this.categoryService = categoryService;
     }
@@ -40,8 +40,7 @@ public class AddTextController {
     
     @RequestMapping(method = RequestMethod.POST)
     public String addText(@ModelAttribute TextFormInput textFormInput) {
-        System.out.println("Chosen category: " + textFormInput.getCategory());
-        //newTextWorker.add(textForm.toBibleTextDto());
-        return "redirect:overzicht.html";
+        newTextWorker.add(textFormInput.toBibleTextDtoWithUser());
+        return "redirect:overzicht.html?categoryId=" + textFormInput.getCategory();
     }
 }

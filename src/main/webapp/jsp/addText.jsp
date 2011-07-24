@@ -33,7 +33,11 @@
             <c:forEach items="${textFormData.categories}" var="category">
                  <option value="${category.id}">${category.name}</option>
             </c:forEach>
-        </select>
+        </select> <br>
+        
+        <label for="email">Jouw email</label>
+        <input name="email" type="text"/> <br>
+        
         <input type="submit" value="Voeg toe"/>
     </spring:bind>
 </form>

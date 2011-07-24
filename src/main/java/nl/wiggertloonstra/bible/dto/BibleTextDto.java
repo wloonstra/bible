@@ -1,5 +1,6 @@
 package nl.wiggertloonstra.bible.dto;
 
+
 /**
  * Data transfer object for BibleText.
  */
@@ -11,4 +12,5 @@ public class BibleTextDto {
     public int endVerse;
     public String motivation;
     public int category;
+    public String email;
 }

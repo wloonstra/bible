@@ -1,6 +1,7 @@
 package nl.wiggertloonstra.bible.ui.form;
 
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 public class TextFormInput {
     
@@ -11,6 +12,7 @@ public class TextFormInput {
     private int endVerse;
     private String motivation;
     private int category;
+    private String email;
     
     public String getBook() {
         return book;
@@ -54,8 +56,14 @@ public class TextFormInput {
     public void setCategory(int category) {
         this.category = category;
     }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
-    public BibleTextDto toBibleTextDto() {
+    public BibleTextDto toBibleTextDtoWithUser() {
         BibleTextDto bibleTextDto = new BibleTextDto();
         bibleTextDto.bookName = book;
         bibleTextDto.startChapter = this.startChapter;
@@ -64,6 +72,7 @@ public class TextFormInput {
         bibleTextDto.endVerse = this.endVerse;
         bibleTextDto.motivation = this.motivation;
         bibleTextDto.category = this.category;
+        bibleTextDto.email = this.email;
         return bibleTextDto;
     }
 

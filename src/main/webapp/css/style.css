@@ -53,6 +53,13 @@ td.bible-text {
     color: grey;
 }
 
+.bible-email {
+    display: block;
+    font-style: italic;
+    font-size: 10px;
+    color: grey;
+}
+
 ul.menu {
     list-style-type: none;
     padding: 2px 15px;    

@@ -6,7 +6,7 @@ import java.util.List;
 import nl.wiggertloonstra.bible.collaborator.BiblijaScraper;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
-import nl.wiggertloonstra.bible.service.CategoryService;
+import nl.wiggertloonstra.bible.service.CategoryServiceImpl;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
 import org.apache.commons.lang.StringUtils;
@@ -31,13 +31,13 @@ public class OverviewController {
     };
     
     private final BibleTextRepository bibleTextRepository;
-    private final CategoryService categoryService;
+    private final CategoryServiceImpl categoryService;
 
     private final BiblijaScraper biblijaScraper;
     
     @Autowired
     public OverviewController(BibleTextRepository bibleTextRepository,
-                              CategoryService categoryService,
+                              CategoryServiceImpl categoryService,
                               BiblijaScraper seleniumTextRetriever) {
         this.bibleTextRepository = bibleTextRepository;
         this.categoryService = categoryService;
@@ -56,7 +56,7 @@ public class OverviewController {
 
     private String getHeaderFor(int categoryId) {
         if (categoryId > 0) {
-            return categoryService.getCategoryFor(categoryId).getName();
+            return categoryService.getCategoryViewFor(categoryId).getName();
         } else {
             return "Alle categorieen";
         }
