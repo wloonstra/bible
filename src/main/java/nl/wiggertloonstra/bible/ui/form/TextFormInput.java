@@ -10,6 +10,7 @@ public class TextFormInput {
     private int endChapter;
     private int endVerse;
     private String motivation;
+    private int category;
     
     public String getBook() {
         return book;
@@ -47,6 +48,12 @@ public class TextFormInput {
     public void setMotivation(String motivation) {
         this.motivation = motivation;
     }
+    public int getCategory() {
+        return category;
+    }
+    public void setCategory(int category) {
+        this.category = category;
+    }
     
     public BibleTextDto toBibleTextDto() {
         BibleTextDto bibleTextDto = new BibleTextDto();
@@ -56,6 +63,7 @@ public class TextFormInput {
         bibleTextDto.endChapter = this.endChapter;
         bibleTextDto.endVerse = this.endVerse;
         bibleTextDto.motivation = this.motivation;
+        bibleTextDto.category = this.category;
         return bibleTextDto;
     }
 

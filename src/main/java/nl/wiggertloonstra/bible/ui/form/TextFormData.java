@@ -12,7 +12,7 @@ public class TextFormData {
         this.categories = categories;
     }
     
-    public List<CategoryView> categories() {
+    public List<CategoryView> getCategories() {
         return categories;
     }
 

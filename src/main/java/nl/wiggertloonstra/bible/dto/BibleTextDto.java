@@ -10,4 +10,5 @@ public class BibleTextDto {
     public int endChapter;
     public int endVerse;
     public String motivation;
+    public int category;
 }
