@@ -1,6 +1,6 @@
 package nl.wiggertloonstra.bible.ui.form;
 
-import nl.wiggertloonstra.bible.service.BookService;
+import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.service.CategoryService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,19 +9,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class TextFormDataFactory {
 
-    private final BookService bookService;
+    private BookRepository bookRepository;
     private final CategoryService categoryService;
     
     @Autowired
-    public TextFormDataFactory(BookService bookService,
+    public TextFormDataFactory(BookRepository bookRepository,
                                CategoryService categoryService) {
-        this.bookService = bookService;
+        this.bookRepository = bookRepository;
         this.categoryService = categoryService;
     }
     
     
     public TextFormData newTextFormData() {
-        return new TextFormData(bookService.getBooks(),
+        return new TextFormData(bookRepository.getBooks(),
                                 categoryService.getAllCategories());
     }
 
