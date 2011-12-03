@@ -1,11 +1,10 @@
-package nl.wiggertloonstra.bible.format;
+package nl.wiggertloonstra.bible.util;
 
 import static nl.wiggertloonstra.bible.util.BibleTextBuilder.aBibleText;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
-import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
 import org.junit.Test;
 
