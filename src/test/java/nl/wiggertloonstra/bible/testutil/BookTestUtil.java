@@ -1,11 +1,11 @@
 package nl.wiggertloonstra.bible.testutil;
 
-import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
+import nl.wiggertloonstra.bible.hibernate.domain.Book;
 
 public class BookTestUtil {
     
-    public static BookDo aBookWithId(int id) {
-        BookDo book = new BookDo();
+    public static Book aBookWithId(int id) {
+        Book book = new Book();
         book.setId(id);
         return book;
     }

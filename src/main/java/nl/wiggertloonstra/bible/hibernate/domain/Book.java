@@ -8,13 +8,13 @@ import javax.persistence.Id;
  * @author wloonstra
  */
 @Entity(name = "book")
-public class BookDo {
+public class Book {
 
     @Id
     private int id;
     private String name;
     
-    public BookDo() {
+    public Book() {
         // empty constructor
     }
 

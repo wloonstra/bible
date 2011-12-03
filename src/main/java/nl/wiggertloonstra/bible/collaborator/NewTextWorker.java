@@ -4,7 +4,7 @@ import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
-import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
+import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.hibernate.domain.CategoryDo;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 import nl.wiggertloonstra.bible.service.CategoryService;
@@ -41,7 +41,7 @@ public class NewTextWorker {
      * @param bibleTextDto to add
      */
     public void add(BibleTextDto bibleTextDto) {
-        BookDo book = retrieveBookFrom(bibleTextDto);
+        Book book = retrieveBookFrom(bibleTextDto);
         CategoryDo category = retrieveCategoryFrom(bibleTextDto);
         UserDo user = retrieveUserFrom(bibleTextDto);
         
@@ -57,7 +57,7 @@ public class NewTextWorker {
         bibleTextRepository.store(newBibleText);
     }
     
-    private BookDo retrieveBookFrom(BibleTextDto bibleTextDto) {
+    private Book retrieveBookFrom(BibleTextDto bibleTextDto) {
         return bookRepository.getBookWithId(bibleTextDto.bookId);
     }
 

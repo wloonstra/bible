@@ -1,12 +1,12 @@
 package nl.wiggertloonstra.bible.util;
 
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
-import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
+import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 public class BibleTextBuilder {
     
-    private BookDo book;
+    private Book book;
     private int startChapter;
     private int startVerse;
     private int endChapter;
@@ -18,7 +18,7 @@ public class BibleTextBuilder {
         return new BibleTextBuilder();
     }
     
-    public BibleTextBuilder inBook(BookDo book) {
+    public BibleTextBuilder inBook(Book book) {
         this.book = book;
         return this;
     }

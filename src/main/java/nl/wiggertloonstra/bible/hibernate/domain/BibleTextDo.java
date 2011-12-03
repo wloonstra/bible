@@ -13,7 +13,7 @@ public class BibleTextDo {
     private int id;
 
     @ManyToOne
-    private BookDo book;
+    private Book book;
     
     private int startChapter;
     private int endChapter;
@@ -42,11 +42,11 @@ public class BibleTextDo {
         this.id = id;
     }
 
-    public BookDo getBook() {
+    public Book getBook() {
         return book;
     }
 
-    public void setBook(BookDo book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 

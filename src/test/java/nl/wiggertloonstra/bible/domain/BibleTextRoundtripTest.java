@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import nl.wiggertloonstra.bible.hibernate.SessionManager;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
-import nl.wiggertloonstra.bible.hibernate.domain.BookDo;
+import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 
 import org.hibernate.Session;
@@ -28,7 +28,7 @@ public class BibleTextRoundtripTest {
     public void bibleTextCanBeStoredAndRetrieved() throws Exception {
         Session session = sessionManager.session();
         
-        BookDo genesis = retrieveBookGenesis(session);
+        Book genesis = retrieveBookGenesis(session);
         UserDo storedUser = createStoredUser(session);
         BibleTextDo bibleText = newBibleText(genesis, storedUser);
         
@@ -51,7 +51,7 @@ public class BibleTextRoundtripTest {
         sessionManager.getSessionFactory().close();
     }
 
-    private BibleTextDo newBibleText(BookDo genesis, UserDo storedUser) {
+    private BibleTextDo newBibleText(Book genesis, UserDo storedUser) {
         BibleTextDo bibleText = new BibleTextDo();
         bibleText.setBook(genesis);
         bibleText.setStartChapter(5);
@@ -63,8 +63,8 @@ public class BibleTextRoundtripTest {
         return bibleText;
     }
 
-    private BookDo retrieveBookGenesis(Session session) {
-        BookDo genesis = (BookDo) session.createCriteria(BookDo.class)
+    private Book retrieveBookGenesis(Session session) {
+        Book genesis = (Book) session.createCriteria(Book.class)
             .add(Restrictions.like("name", "Genesis")).uniqueResult();
         return genesis;
     }
