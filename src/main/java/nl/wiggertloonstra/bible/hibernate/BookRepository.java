@@ -25,4 +25,5 @@ public interface BookRepository {
     
     Book getBookWithId(int id);
 
+    Book getBookWithShortName(String gen);
 }

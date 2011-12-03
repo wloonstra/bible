@@ -46,4 +46,9 @@ public class HibernateBookRepository implements BookRepository {
         Session session = sessionManager.session();
         return (Book) session.get(Book.class, id);
     }
+
+    @Override
+    public Book getBookWithShortName(String gen) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

@@ -22,15 +22,17 @@ public class Book {
         return id;
     }
 
-    public void setId(int id) {
+    public Book setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Book setName(String name) {
         this.name = name;
+        return this;
     }
 }
