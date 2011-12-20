@@ -10,5 +10,6 @@ CREATE TABLE bibletext (
     text TEXT,
     user_id INT,
     motivation TEXT,
-    category_id INT);
+    category_id INT,
+    creationDate TIMESTAMP);
      

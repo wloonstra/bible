@@ -54,6 +54,7 @@ public class NewTextWorker {
         newBibleText.setEndVerse(bibleTextDto.endVerse);
         newBibleText.setCategory(category);
         newBibleText.setUser(user);
+        newBibleText.setCreationDate(bibleTextDto.creationDate);
         bibleTextRepository.store(newBibleText);
     }
     

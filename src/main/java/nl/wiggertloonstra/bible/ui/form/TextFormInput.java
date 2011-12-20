@@ -1,6 +1,7 @@
 package nl.wiggertloonstra.bible.ui.form;
 
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
+import org.joda.time.DateTime;
 
 public class TextFormInput {
     
@@ -12,6 +13,7 @@ public class TextFormInput {
     private String motivation;
     private int category;
     private String email;
+    private DateTime creationDate;
     
     public int getBook() {
         return book;
@@ -61,7 +63,13 @@ public class TextFormInput {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+    public DateTime getCreationDate() {
+        return creationDate;
+    }
+    public void setCreationDate(DateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     public BibleTextDto toBibleTextDtoWithUser() {
         BibleTextDto bibleTextDto = new BibleTextDto();
         bibleTextDto.bookId = book;
@@ -72,6 +80,7 @@ public class TextFormInput {
         bibleTextDto.motivation = this.motivation;
         bibleTextDto.categoryId = this.category;
         bibleTextDto.email = this.email;
+        bibleTextDto.creationDate = this.creationDate;
         return bibleTextDto;
     }
 
