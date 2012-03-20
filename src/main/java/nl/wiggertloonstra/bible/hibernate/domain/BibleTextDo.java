@@ -1,9 +1,9 @@
 package nl.wiggertloonstra.bible.hibernate.domain;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "bibletext")
 public class BibleTextDo {
@@ -28,11 +28,6 @@ public class BibleTextDo {
     
     @ManyToOne
     private CategoryDo category;
-
-    @Column(name = "creation_date")
-    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
-    private DateTime creationDate;
-
     
     
     public BibleTextDo() {
@@ -118,8 +113,5 @@ public class BibleTextDo {
     public void setText(String text) {
         this.text = text;
     }
-
-    public void setCreationDate(DateTime creationDate) {
-        this.creationDate = creationDate;
-    }
+    
 }

@@ -1,8 +1,6 @@
 package nl.wiggertloonstra.bible.dto;
 
 
-import org.joda.time.DateTime;
-
 /**
  * Data transfer object for BibleText.
  */
@@ -15,5 +13,4 @@ public class BibleTextDto {
     public String motivation;
     public int categoryId;
     public String email;
-    public DateTime creationDate;
 }
