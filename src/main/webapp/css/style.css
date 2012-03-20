@@ -29,7 +29,7 @@ div#text-content {
     width: 700px;
     margin-left: 150px;
     position: relative;
-    float: reight
+    min-height: 300px;
 }
 
 .header {
