@@ -10,7 +10,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bibletext</property>
         <property name="hibernate.connection.username">bible</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <mapping class="nl.wiggertloonstra.bible.hibernate.domain.Book"/>
         <mapping class="nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo"/>
         <mapping class="nl.wiggertloonstra.bible.hibernate.domain.UserDo"/>
