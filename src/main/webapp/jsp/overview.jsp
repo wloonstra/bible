@@ -2,14 +2,7 @@
 <%@ taglib prefix="mypage" tagdir="/WEB-INF/tags" %>
 
 <mypage:header/>
-
-<div id="category-menu">
-    <ul class="menu">
-        <c:forEach items="${categories}" var="category">
-            <li><a href="${category.url}">${category.name} (${category.numberOfTexts})</a></li>
-        </c:forEach>
-    </ul>
-</div>
+<mypage:left-menu/>
 
 <div id="text-content">
     <h2>${categoriesHeader}</h2>

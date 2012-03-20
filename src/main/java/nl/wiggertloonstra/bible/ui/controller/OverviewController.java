@@ -34,7 +34,7 @@ public class OverviewController {
     private final CategoryServiceImpl categoryService;
 
     private final BiblijaScraper biblijaScraper;
-    
+
     @Autowired
     public OverviewController(BibleTextRepository bibleTextRepository,
                               CategoryServiceImpl categoryService,
@@ -48,7 +48,6 @@ public class OverviewController {
     public String overview(Model model,
                            @RequestParam(required = false, defaultValue = "0") int categoryId) throws ClientProtocolException, IOException {
         model.addAttribute("categoriesHeader", getHeaderFor(categoryId));
-        model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("bibleTexts", getBibleTextsFor(categoryId));
         
         return "overview";

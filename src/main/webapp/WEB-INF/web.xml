@@ -18,4 +18,18 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
     
+    <filter>
+        <filter-name>left-menu</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>left-menu</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+        
 </web-app>

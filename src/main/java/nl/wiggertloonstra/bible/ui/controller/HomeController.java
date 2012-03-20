@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
 	private static final long serialVersionUID = 7803277386849094314L;
-	
+
 	@RequestMapping("/home.html")
 	public String home() {
 		return "home";
