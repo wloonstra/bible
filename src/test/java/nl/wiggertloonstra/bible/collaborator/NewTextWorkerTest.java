@@ -6,7 +6,7 @@ import static nl.wiggertloonstra.bible.testutil.BibleTextTestUtil.isEqualBibleTe
 import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithId;
 import static org.easymock.EasyMock.expect;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
-import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
+import nl.wiggertloonstra.bible.hibernate.BibleRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.service.CategoryService;
@@ -21,7 +21,7 @@ public class NewTextWorkerTest {
     
     private final IMocksControl control = EasyMock.createControl();
     private BookRepository bookRepository = control.createMock(BookRepository.class);
-    private BibleTextRepository bibleTextRepository = control.createMock(BibleTextRepository.class);
+    private BibleRepository bibleTextRepository = control.createMock(BibleRepository.class);
     private UserService userService = control.createMock(UserService.class);
     private CategoryService categoryService = control.createMock(CategoryService.class);
     NewTextWorker addNewTextWorker = new NewTextWorker(bibleTextRepository, bookRepository, userService, categoryService);

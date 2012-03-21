@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import nl.wiggertloonstra.bible.collaborator.BiblijaScraper;
-import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
+import nl.wiggertloonstra.bible.hibernate.BibleRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.service.CategoryServiceImpl;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
@@ -30,16 +30,16 @@ public class OverviewController {
         }
     };
     
-    private final BibleTextRepository bibleTextRepository;
+    private final BibleRepository bibleRepository;
     private final CategoryServiceImpl categoryService;
 
     private final BiblijaScraper biblijaScraper;
 
     @Autowired
-    public OverviewController(BibleTextRepository bibleTextRepository,
+    public OverviewController(BibleRepository bibleRepository,
                               CategoryServiceImpl categoryService,
                               BiblijaScraper seleniumTextRetriever) {
-        this.bibleTextRepository = bibleTextRepository;
+        this.bibleRepository = bibleRepository;
         this.categoryService = categoryService;
         this.biblijaScraper = seleniumTextRetriever;
     }
@@ -49,6 +49,8 @@ public class OverviewController {
                            @RequestParam(required = false, defaultValue = "0") int categoryId) throws ClientProtocolException, IOException {
         model.addAttribute("categoriesHeader", getHeaderFor(categoryId));
         model.addAttribute("bibleTexts", getBibleTextsFor(categoryId));
+        
+        System.out.println(bibleRepository.getBibleCommentDosFor(1));
         
         return "overview";
     }
@@ -65,9 +67,9 @@ public class OverviewController {
         List<BibleTextDo> bibleTextDos;
         
         if (categoryId > 0) {
-            bibleTextDos = bibleTextRepository.getBibleTextsForCategory(categoryId);
+            bibleTextDos = bibleRepository.getBibleTextsForCategory(categoryId);
         } else {
-            bibleTextDos = bibleTextRepository.getLatestBibleTexts(10);
+            bibleTextDos = bibleRepository.getLatestBibleTexts(10);
         }
         
         makeSureTextsAreAvailableFor(bibleTextDos);
@@ -79,7 +81,7 @@ public class OverviewController {
             if (StringUtils.isBlank(bibleTextDo.getText())) {
                 String text = biblijaScraper.findFor(bibleTextDo);
                 bibleTextDo.setText(text);
-                bibleTextRepository.store(bibleTextDo);
+                bibleRepository.store(bibleTextDo);
             }
         }
     }

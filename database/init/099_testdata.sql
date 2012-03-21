@@ -34,3 +34,20 @@ INSERT INTO bibletext (
 (55, 1, 7, 0, 0, '', 1, '', 3),
 (43, 14, 27, 0, 0, '', 1, '', 3),
 (19, 56, 3, 56, 4, '', 1, '', 3);    
+
+INSERT INTO biblecomment (
+    user_id, comment, placedate, bibletext_id
+) VALUES
+(1, "Dit is een mooie tekst", 1333000000, 1),
+(1, "Dit is een reactie op een mooie tekst", 1333000010, 1),
+(1, "Dit is een mooie tekst", 1333000000, 1),
+(1, "Dit is een mooie tekst", 1333000000, 2),
+(1, "Dit is een mooie tekst", 1333000000, 4),
+(1, "Dit is een mooie tekst", 1333000000, 6),
+(1, "Dit is een mooie tekst", 1333000000, 7),
+(1, "Dit is een mooie tekst", 1333000000, 8),
+(1, "Dit is een mooie tekst", 1333000000, 10),
+(1, "Dit is een mooie tekst", 1333000000, 11),
+(1, "Dit is een mooie tekst", 1333000000, 19),
+(1, "Dit is een mooie tekst", 1333000000, 20),
+(1, "Dit is een mooie tekst", 1333000000, 22);

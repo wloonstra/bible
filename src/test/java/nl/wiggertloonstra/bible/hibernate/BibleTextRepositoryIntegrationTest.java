@@ -28,7 +28,7 @@ public class BibleTextRepositoryIntegrationTest {
     private static BibleTextDo storedText2;
     
     @Autowired
-    private BibleTextRepository repository;
+    private BibleRepository repository;
     
     @Autowired
     private BookRepository bookRepository;

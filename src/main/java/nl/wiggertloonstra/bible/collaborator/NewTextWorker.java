@@ -1,7 +1,7 @@
 package nl.wiggertloonstra.bible.collaborator;
 
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
-import nl.wiggertloonstra.bible.hibernate.BibleTextRepository;
+import nl.wiggertloonstra.bible.hibernate.BibleRepository;
 import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
@@ -20,13 +20,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class NewTextWorker {
 
-    private final BibleTextRepository bibleTextRepository;
+    private final BibleRepository bibleTextRepository;
     private final BookRepository bookRepository;
     private final UserService userService;
     private final CategoryService categoryService;
     
     @Autowired
-    public NewTextWorker(BibleTextRepository bibleTextRepository,
+    public NewTextWorker(BibleRepository bibleTextRepository,
                          BookRepository bookRepository,
                          UserService userService,
                          CategoryService categoryService) {

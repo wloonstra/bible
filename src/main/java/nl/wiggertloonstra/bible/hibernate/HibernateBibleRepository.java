@@ -2,6 +2,7 @@ package nl.wiggertloonstra.bible.hibernate;
 
 import java.util.List;
 
+import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 import org.hibernate.HibernateException;
@@ -13,16 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * Hibernate implementation of BibleTextRepository.
+ * Hibernate implementation of BibleRepository.
  * @author wloonstra
  */
 @Component
-public class HibernateBibleTextRepository implements BibleTextRepository {
+public class HibernateBibleRepository implements BibleRepository {
 
     private final SessionManager sessionManager;
 
     @Autowired
-    public HibernateBibleTextRepository(SessionManager sessionManager) {
+    public HibernateBibleRepository(SessionManager sessionManager) {
         this.sessionManager = sessionManager;
     }
     
@@ -78,6 +79,23 @@ public class HibernateBibleTextRepository implements BibleTextRepository {
                .add(Restrictions.eq("category.id", categoryId))
                .list();
         return bibleTexts;
+    }
+    
+    @Override
+    public List<BibleComment> getBibleCommentDosFor(int bibleTextId) {
+        Session session = sessionManager.session();
+        @SuppressWarnings("unchecked")
+        List<BibleComment> comments = (List<BibleComment>) session.createCriteria(BibleComment.class)
+            .add(Restrictions.eq("bibleText.id", bibleTextId))
+            .list();
+        return comments;
+        
+    }
+
+    @Override
+    public void addBibleComment(BibleComment bibleComment) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

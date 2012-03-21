@@ -2,13 +2,14 @@ package nl.wiggertloonstra.bible.hibernate;
 
 import java.util.List;
 
+import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 /**
  * BibleTextRepository to store and retrieve bibleTexts.
  * @author wloonstra
  */
-public interface BibleTextRepository {
+public interface BibleRepository {
 
     /**
      * Store new bibleText.
@@ -35,5 +36,8 @@ public interface BibleTextRepository {
      * @return list of bibletexts related to this category
      */
     List<BibleTextDo> getBibleTextsForCategory(Integer categoryId);
+    
+    List<BibleComment> getBibleCommentDosFor(int bibleTextId);
+    void addBibleComment(BibleComment bibleComment);
 
 }
