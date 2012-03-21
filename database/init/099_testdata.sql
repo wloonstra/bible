@@ -4,7 +4,9 @@ TRUNCATE TABLE bibletext;
 INSERT INTO user (
     username, email
 ) VALUES
-('wiggert','test@example.com');
+('Wiggert','test@example.com'),
+('Johannes','johannes@example.com'),
+('Petrus','petrus@example.com');
 
 INSERT INTO bibletext (
     book_id, startChapter, startVerse, endChapter, endVerse, text, user_id, motivation, category_id
@@ -38,19 +40,19 @@ INSERT INTO bibletext (
 INSERT INTO biblecomment (
     user_id, comment, placedate, bibletext_id
 ) VALUES
+(3, "Dit is een mooie tekst", 1333000000, 1),
+(2, "Dit is een reactie op een mooie tekst", 1333000010, 1),
 (1, "Dit is een mooie tekst", 1333000000, 1),
-(1, "Dit is een reactie op een mooie tekst", 1333000010, 1),
-(1, "Dit is een mooie tekst", 1333000000, 1),
-(1, "Dit is een mooie tekst", 1333000000, 2),
-(1, "Dit is een mooie tekst", 1333000000, 4),
+(2, "Dit is een mooie tekst", 1333000000, 2),
+(3, "Dit is een mooie tekst", 1333000000, 4),
 (1, "Dit is een mooie tekst", 1333000000, 6),
 (1, "Dit is een mooie tekst", 1333000000, 7),
-(1, "Dit is een mooie tekst", 1333000000, 8),
+(2, "Dit is een mooie tekst", 1333000000, 8),
 (1, "Dit is een mooie tekst", 1333000000, 10),
-(1, "Dit is een mooie tekst", 1333000000, 11),
-(1, "Dit is een mooie tekst", 1333000000, 19),
+(3, "Dit is een mooie tekst", 1333000000, 11),
+(2, "Dit is een mooie tekst", 1333000000, 19),
 (1, "Dit is een mooie tekst", 1333000000, 20),
-(1, "Dit is een mooie tekst", 1333000000, 22);
+(2, "Dit is een mooie tekst", 1333000000, 22);
 
 INSERT INTO bibletext_biblecomment (
     bibletext_id, biblecomment_id

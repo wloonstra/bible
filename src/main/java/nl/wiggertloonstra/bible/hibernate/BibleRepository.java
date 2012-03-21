@@ -5,6 +5,7 @@ import java.util.List;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
+import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
 /**
  * BibleTextRepository to store and retrieve bibleTexts.
@@ -13,9 +14,9 @@ import nl.wiggertloonstra.bible.hibernate.domain.Book;
 public interface BibleRepository {
 
     BibleTextDo store(BibleTextDo newBibleText);
-    List<BibleTextDo> getBibleTextsForUser(int userId);
-    List<BibleTextDo> getLatestBibleTexts(int numberOfResults);
-    List<BibleTextDo> getBibleTextsForCategory(Integer categoryId);
+    List<BibleTextView> getBibleTextsForUser(int userId);
+    List<BibleTextView> getLatestBibleTexts(int numberOfResults);
+    List<BibleTextView> getBibleTextsForCategory(Integer categoryId);
     List<BibleComment> getBibleCommentDosFor(int bibleTextId);
     void addBibleComment(BibleComment bibleComment);
     List<Book> getBooks();

@@ -3,13 +3,10 @@ package nl.wiggertloonstra.bible.ui.controller;
 import java.io.IOException;
 import java.util.List;
 
-import nl.wiggertloonstra.bible.collaborator.BiblijaScraper;
 import nl.wiggertloonstra.bible.hibernate.BibleRepository;
-import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.service.CategoryServiceImpl;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,31 +14,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-
 @Controller
 public class OverviewController {
-
-    private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW = new Function<BibleTextDo, BibleTextView>() {
-        @Override
-        public BibleTextView apply(BibleTextDo from) {
-            return new BibleTextView(from);
-        }
-    };
     
     private final BibleRepository bibleRepository;
     private final CategoryServiceImpl categoryService;
 
-    private final BiblijaScraper biblijaScraper;
-
     @Autowired
     public OverviewController(BibleRepository bibleRepository,
-                              CategoryServiceImpl categoryService,
-                              BiblijaScraper seleniumTextRetriever) {
+                              CategoryServiceImpl categoryService) {
         this.bibleRepository = bibleRepository;
         this.categoryService = categoryService;
-        this.biblijaScraper = seleniumTextRetriever;
     }
     
     @RequestMapping("/overzicht.html")
@@ -59,29 +42,16 @@ public class OverviewController {
             return "Alle categorieen";
         }
     }
-
+    
     private List<BibleTextView> getBibleTextsFor(int categoryId) {
-        List<BibleTextDo> bibleTextDos;
-        
         if (categoryId > 0) {
-            bibleTextDos = bibleRepository.getBibleTextsForCategory(categoryId);
+            return bibleRepository.getBibleTextsForCategory(categoryId);
         } else {
-            bibleTextDos = bibleRepository.getLatestBibleTexts(10);
+            return bibleRepository.getLatestBibleTexts(10);
         }
-        
-        makeSureTextsAreAvailableFor(bibleTextDos);
-        return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW);
     }
 
-    private void makeSureTextsAreAvailableFor(List<BibleTextDo> bibleTextDos) {
-        for (BibleTextDo bibleTextDo : bibleTextDos) {
-            if (StringUtils.isBlank(bibleTextDo.getText())) {
-                String text = biblijaScraper.findFor(bibleTextDo);
-                bibleTextDo.setText(text);
-                bibleRepository.store(bibleTextDo);
-            }
-        }
-    }
+
 
 
 }

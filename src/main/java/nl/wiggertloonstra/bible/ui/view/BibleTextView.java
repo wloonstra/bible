@@ -30,4 +30,8 @@ public class BibleTextView {
         return bibleTextDo.getUser().getUsername();
     }
 
+    public Integer getId() {
+        return bibleTextDo.getId();
+    }
+
 }

@@ -78,12 +78,21 @@ td.bible-pointer {
     
 td.bible-text {
     width: 500px;
+    padding-bottom: 10px;
 }
 
-.bible-motivation {
+.bible-comment {
     display: block;
+    font-size: 12px;
+    margin-left: 20px;
+    margin-bottom: 8px;
+    margin-top: 4px;
+    background-color: #F0F0F0;
+    padding: 2px;
+}
+
+.italic {
     font-style: italic;
-    color: grey;
 }
 
 .bible-email {

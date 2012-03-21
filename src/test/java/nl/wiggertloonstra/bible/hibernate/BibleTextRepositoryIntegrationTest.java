@@ -9,6 +9,7 @@ import java.util.List;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
+import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,7 @@ public class BibleTextRepositoryIntegrationTest {
     
     @Test
     public void retrieveBibleTexts() throws Exception {
-        List<BibleTextDo> bibleTexts = repository.getLatestBibleTexts(3);
+        List<BibleTextView> bibleTexts = repository.getLatestBibleTexts(3);
         assertThat(bibleTexts.size(), is(3));
     }
     
@@ -47,7 +48,7 @@ public class BibleTextRepositoryIntegrationTest {
         placeTwoAdsFor(user1);
         placeAdsFor(1, user2);
         
-        List<BibleTextDo> bibleTexts = repository.getBibleTextsForUser(user1.getId());
+        List<BibleTextView> bibleTexts = repository.getBibleTextsForUser(user1.getId());
         assertThat(bibleTexts.size(), is(2));
         assertThat(bibleTexts.get(0).getId(), is(storedText1.getId()));
         assertThat(bibleTexts.get(1).getId(), is(storedText2.getId()));

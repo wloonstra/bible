@@ -4,10 +4,13 @@ import static org.hibernate.criterion.Restrictions.like;
 
 import java.util.List;
 
+import nl.wiggertloonstra.bible.collaborator.BiblijaScraper;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
+import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,6 +19,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+
 /**
  * Hibernate implementation of BibleRepository.
  * @author wloonstra
@@ -23,11 +29,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class HibernateBibleRepository implements BibleRepository {
 
+    private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW = new Function<BibleTextDo, BibleTextView>() {
+        @Override
+        public BibleTextView apply(BibleTextDo from) {
+            return new BibleTextView(from);
+        }
+    };
+
     private final SessionManager sessionManager;
+    private final BiblijaScraper biblijaScraper;
 
     @Autowired
-    public HibernateBibleRepository(SessionManager sessionManager) {
+    public HibernateBibleRepository(SessionManager sessionManager, BiblijaScraper biblijaScraper) {
         this.sessionManager = sessionManager;
+        this.biblijaScraper = biblijaScraper;
     }
     
     @Override
@@ -54,34 +69,34 @@ public class HibernateBibleRepository implements BibleRepository {
     }
 
     @Override
-    public List<BibleTextDo> getBibleTextsForUser(int userId) {
+    public List<BibleTextView> getBibleTextsForUser(int userId) {
         Session session = sessionManager.session();
         @SuppressWarnings("unchecked")
         List<BibleTextDo> bibleTextsForUser = (List<BibleTextDo>) session.createCriteria(BibleTextDo.class)
                .add(Restrictions.eq("user.id", userId))
                .list();
-        return bibleTextsForUser;
+        return prepareForView(bibleTextsForUser);
     }
 
     @Override
-    public List<BibleTextDo> getLatestBibleTexts(int numberOfResults) {
+    public List<BibleTextView> getLatestBibleTexts(int numberOfResults) {
         Session session = sessionManager.session();
         @SuppressWarnings("unchecked")
         List<BibleTextDo> bibleTexts = (List<BibleTextDo>) session.createCriteria(BibleTextDo.class)
                .addOrder(Order.desc("id"))
                .setMaxResults(numberOfResults)
                .list();
-        return bibleTexts;
+        return prepareForView(bibleTexts);
     }
 
     @Override
-    public List<BibleTextDo> getBibleTextsForCategory(Integer categoryId) {
+    public List<BibleTextView> getBibleTextsForCategory(Integer categoryId) {
         Session session = sessionManager.session();
         @SuppressWarnings("unchecked")
         List<BibleTextDo> bibleTexts = (List<BibleTextDo>) session.createCriteria(BibleTextDo.class)
                .add(Restrictions.eq("category.id", categoryId))
                .list();
-        return bibleTexts;
+        return prepareForView(bibleTexts);
     }
     
     @Override
@@ -127,5 +142,22 @@ public class HibernateBibleRepository implements BibleRepository {
     public Book getBookByShortName(String gen) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
+    
+    private List<BibleTextView> prepareForView(List<BibleTextDo> bibleTextDos) {
+        makeSureTextsAreAvailableFor(bibleTextDos);
+        return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW);
+    }
+    
+    private void makeSureTextsAreAvailableFor(List<BibleTextDo> bibleTextDos) {
+        for (BibleTextDo bibleTextDo : bibleTextDos) {
+            if (StringUtils.isBlank(bibleTextDo.getText())) {
+                String text = biblijaScraper.findFor(bibleTextDo);
+                bibleTextDo.setText(text);
+                store(bibleTextDo);
+            }
+        }
+    }
+    
+    
 
 }

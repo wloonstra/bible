@@ -18,7 +18,10 @@
                 <td class="bible-text">
                     ${bibleText.text}
                     <c:forEach items="${bibleText.comments}" var="biblecomment">
-                        <span class="bible-motivation">${biblecomment.comment}</span>
+                        <div class="bible-comment">
+                            ${biblecomment.user.username} schreef op datum: <br /> 
+                            <span class="italic">${biblecomment.comment}</span>
+                        </div>
                     </c:forEach>
                 </td>
             </tr>
