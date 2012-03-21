@@ -20,17 +20,17 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 public class BookRepositoryIntegrationTest {
 
     @Autowired
-    BookRepository bookRepository;
+    BibleRepository bibleRepository;
     
     @Test
     public void getAllBooks() throws Exception {
-        List<Book> books = bookRepository.getBooks();
+        List<Book> books = bibleRepository.getBooks();
         assertThat(books.size(), is(66));
     }
     
     @Test
     public void getBookByName() throws Exception {
-        Book book = bookRepository.getBookWithName("Leviticus");
+        Book book = bibleRepository.getBookByName("Leviticus");
         assertThat(book.getName(), is("Leviticus"));
         
     }

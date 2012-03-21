@@ -7,7 +7,6 @@ import static nl.wiggertloonstra.bible.testutil.BookTestUtil.aBookWithId;
 import static org.easymock.EasyMock.expect;
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleRepository;
-import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.service.CategoryService;
 import nl.wiggertloonstra.bible.service.UserService;
@@ -20,17 +19,16 @@ import org.junit.Test;
 public class NewTextWorkerTest {
     
     private final IMocksControl control = EasyMock.createControl();
-    private BookRepository bookRepository = control.createMock(BookRepository.class);
-    private BibleRepository bibleTextRepository = control.createMock(BibleRepository.class);
+    private BibleRepository bibleRepository = control.createMock(BibleRepository.class);
     private UserService userService = control.createMock(UserService.class);
     private CategoryService categoryService = control.createMock(CategoryService.class);
-    NewTextWorker addNewTextWorker = new NewTextWorker(bibleTextRepository, bookRepository, userService, categoryService);
+    NewTextWorker addNewTextWorker = new NewTextWorker(bibleRepository, userService, categoryService);
     
     @Test
     public void addsNewTextToBibleTextRepository() throws Exception {
         BibleTextDto bibleTextDto = createDefaultBibleTextDto();
-        expect(bookRepository.getBookWithId(1)).andReturn(aBookWithId(1));
-        expect(bibleTextRepository.store(aBibleTextWithCorrectFields())).andReturn(null);
+        expect(bibleRepository.getBookById(1)).andReturn(aBookWithId(1));
+        expect(bibleRepository.store(aBibleTextWithCorrectFields())).andReturn(null);
         expect(categoryService.getCategoryDoFor(0)).andReturn(null);
         expect(userService.userExistingOrNewWithEmail(null)).andReturn(null);
         

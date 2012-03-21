@@ -2,7 +2,7 @@ package nl.wiggertloonstra.bible.collaborator;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import nl.wiggertloonstra.bible.hibernate.BookRepository;
+import nl.wiggertloonstra.bible.hibernate.BibleRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
 import org.junit.Test;
@@ -21,13 +21,13 @@ public class BiblijaScraperTest {
     private BiblijaScraper biblijaScraper;
     
     @Autowired
-    private BookRepository bookRepository;
+    private BibleRepository bibleRepository;
     
     
     @Test
     public void findValidText() throws Exception {
         BibleTextDo bibleTextDo = new BibleTextDo();
-        bibleTextDo.setBook(bookRepository.getBookWithName("Psalmen"));
+        bibleTextDo.setBook(bibleRepository.getBookByName("Psalmen"));
         bibleTextDo.setStartChapter(86);
         bibleTextDo.setStartVerse(12);
         
@@ -39,7 +39,7 @@ public class BiblijaScraperTest {
     @Test
     public void testname() throws Exception {
         BibleTextDo bibleTextDo = new BibleTextDo();
-        bibleTextDo.setBook(bookRepository.getBookWithName("Psalmen"));
+        bibleTextDo.setBook(bibleRepository.getBookByName("Psalmen"));
         bibleTextDo.setStartChapter(151);
         bibleTextDo.setStartVerse(1);
         

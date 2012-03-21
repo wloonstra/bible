@@ -2,7 +2,6 @@ package nl.wiggertloonstra.bible.collaborator;
 
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleRepository;
-import nl.wiggertloonstra.bible.hibernate.BookRepository;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.hibernate.domain.CategoryDo;
@@ -20,18 +19,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class NewTextWorker {
 
-    private final BibleRepository bibleTextRepository;
-    private final BookRepository bookRepository;
+    private final BibleRepository bibleRepository;
     private final UserService userService;
     private final CategoryService categoryService;
     
     @Autowired
-    public NewTextWorker(BibleRepository bibleTextRepository,
-                         BookRepository bookRepository,
+    public NewTextWorker(BibleRepository bibleRepository,
                          UserService userService,
                          CategoryService categoryService) {
-        this.bibleTextRepository = bibleTextRepository;
-        this.bookRepository = bookRepository;
+        this.bibleRepository = bibleRepository;
         this.userService = userService;
         this.categoryService = categoryService;
     }
@@ -54,11 +50,11 @@ public class NewTextWorker {
         newBibleText.setEndVerse(bibleTextDto.endVerse);
         newBibleText.setCategory(category);
         newBibleText.setUser(user);
-        bibleTextRepository.store(newBibleText);
+        bibleRepository.store(newBibleText);
     }
     
     private Book retrieveBookFrom(BibleTextDto bibleTextDto) {
-        return bookRepository.getBookWithId(bibleTextDto.bookId);
+        return bibleRepository.getBookById(bibleTextDto.bookId);
     }
 
     private CategoryDo retrieveCategoryFrom(BibleTextDto bibleTextDto) {

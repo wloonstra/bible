@@ -1,9 +1,12 @@
 package nl.wiggertloonstra.bible.hibernate;
 
+import static org.hibernate.criterion.Restrictions.like;
+
 import java.util.List;
 
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.Book;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -96,6 +99,33 @@ public class HibernateBibleRepository implements BibleRepository {
     public void addBibleComment(BibleComment bibleComment) {
         // TODO Auto-generated method stub
         
+    }
+    @Override
+    public List<Book> getBooks() {
+        Session session = sessionManager.session();
+        @SuppressWarnings("unchecked")
+        List<Book> books = (List<Book>) session.createCriteria(Book.class).list();
+        return books;
+    }
+
+    @Override
+    public Book getBookByName(String bookName) {
+        Session session = sessionManager.session();
+        return (Book) session
+                .createCriteria(Book.class)
+                .add(like("name", bookName))
+                .uniqueResult();
+    }
+
+    @Override
+    public Book getBookById(int id) {
+        Session session = sessionManager.session();
+        return (Book) session.get(Book.class, id);
+    }
+
+    @Override
+    public Book getBookByShortName(String gen) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
 }

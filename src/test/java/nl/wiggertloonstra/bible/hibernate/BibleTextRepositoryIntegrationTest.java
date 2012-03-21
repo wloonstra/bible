@@ -31,9 +31,6 @@ public class BibleTextRepositoryIntegrationTest {
     private BibleRepository repository;
     
     @Autowired
-    private BookRepository bookRepository;
-    
-    @Autowired
     private UserRepository userRepository;
     
     @Test
@@ -88,7 +85,7 @@ public class BibleTextRepositoryIntegrationTest {
     }
     
     private Book bookWithName(String bookName) {
-        Book leviticus = bookRepository.getBookWithName(bookName);
+        Book leviticus = repository.getBookByName(bookName);
         return leviticus;
     }
 
