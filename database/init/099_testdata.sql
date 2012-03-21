@@ -51,3 +51,20 @@ INSERT INTO biblecomment (
 (1, "Dit is een mooie tekst", 1333000000, 19),
 (1, "Dit is een mooie tekst", 1333000000, 20),
 (1, "Dit is een mooie tekst", 1333000000, 22);
+
+INSERT INTO bibletext_biblecomment (
+    bibletext_id, biblecomment_id
+) VALUES
+(1,1),
+(1,2),
+(1,3),
+(2,4),
+(4,5),
+(6,6),
+(7,7),
+(8,8),
+(10,9),
+(11,10),
+(19,11),
+(20,12),
+(22,13);

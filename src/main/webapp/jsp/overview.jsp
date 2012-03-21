@@ -17,7 +17,9 @@
                 </td>
                 <td class="bible-text">
                     ${bibleText.text}
-                    <span class="bible-motivation">${bibleText.motivation}</span>
+                    <c:forEach items="${bibleText.comments}" var="biblecomment">
+                        <span class="bible-motivation">${biblecomment.comment}</span>
+                    </c:forEach>
                 </td>
             </tr>
         </c:forEach>

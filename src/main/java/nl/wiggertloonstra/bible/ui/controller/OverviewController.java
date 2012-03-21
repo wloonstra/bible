@@ -23,7 +23,7 @@ import com.google.common.collect.Lists;
 @Controller
 public class OverviewController {
 
-    private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW_AND = new Function<BibleTextDo, BibleTextView>() {
+    private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW = new Function<BibleTextDo, BibleTextView>() {
         @Override
         public BibleTextView apply(BibleTextDo from) {
             return new BibleTextView(from);
@@ -49,9 +49,6 @@ public class OverviewController {
                            @RequestParam(required = false, defaultValue = "0") int categoryId) throws ClientProtocolException, IOException {
         model.addAttribute("categoriesHeader", getHeaderFor(categoryId));
         model.addAttribute("bibleTexts", getBibleTextsFor(categoryId));
-        
-        System.out.println(bibleRepository.getBibleCommentDosFor(1));
-        
         return "overview";
     }
 
@@ -73,7 +70,7 @@ public class OverviewController {
         }
         
         makeSureTextsAreAvailableFor(bibleTextDos);
-        return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW_AND);
+        return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW);
     }
 
     private void makeSureTextsAreAvailableFor(List<BibleTextDo> bibleTextDos) {

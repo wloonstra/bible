@@ -1,9 +1,14 @@
 package nl.wiggertloonstra.bible.hibernate.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity(name = "bibletext")
 public class BibleTextDo {
@@ -29,6 +34,11 @@ public class BibleTextDo {
     @ManyToOne
     private CategoryDo category;
     
+    @OneToMany
+    @JoinTable(name = "bibletext_biblecomment", 
+            joinColumns = { @JoinColumn(name = "bibletext_id") },
+            inverseJoinColumns = { @JoinColumn(name = "biblecomment_id") })
+    private List<BibleComment> comments;
     
     public BibleTextDo() {
         // empty constructor
@@ -113,5 +123,14 @@ public class BibleTextDo {
     public void setText(String text) {
         this.text = text;
     }
+    public List<BibleComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<BibleComment> comments) {
+        this.comments = comments;
+    }
+
+
     
 }

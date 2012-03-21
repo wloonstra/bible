@@ -1,5 +1,8 @@
 package nl.wiggertloonstra.bible.ui.view;
 
+import java.util.List;
+
+import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
@@ -15,8 +18,8 @@ public class BibleTextView {
         return BiblePointerFormatter.format(bibleTextDo);
     }
     
-    public String getMotivation() {
-        return bibleTextDo.getMotivation();
+    public List<BibleComment> getComments() {
+        return bibleTextDo.getComments();
     }
     
     public String getText() {

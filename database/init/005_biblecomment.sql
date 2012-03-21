@@ -6,3 +6,9 @@ CREATE TABLE biblecomment(
     comment TEXT,
     placedate INT,
     bibletext_id INT);
+
+DROP TABLE IF EXISTS bibletext_biblecomment;
+
+CREATE TABLE bibletext_biblecomment(
+    bibletext_id INT,
+    biblecomment_id INT);
