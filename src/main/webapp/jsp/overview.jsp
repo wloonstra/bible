@@ -23,6 +23,11 @@
                         <td class="bible-text">
                             ${bibleText.textSnippet}
                         </td>
+                        <td>
+                            <c:if test="${not empty bibleText.comments}">
+                                <img src="images/speech_balloon_icon.jpg" width="15"/>
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
