@@ -24,7 +24,7 @@ INSERT INTO book VALUES
     (16, 'Nehemia'),
     (17, 'Ester'),
     (18, 'Job'),
-    (19, 'Psalmen'),
+    (19, 'Psalm'),
     (20, 'Spreuken'),
     (21, 'Prediker'),
     (22, 'Hooglied'),
