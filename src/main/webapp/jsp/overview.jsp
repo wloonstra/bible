@@ -10,7 +10,7 @@
         <c:forEach items="${bibleTexts}" var="bibleText">
             <tr>
                 <td class="bible-pointer">
-                    ${bibleText.textPointer}
+                    <a href="${bibleText.url}">${bibleText.textPointer}</a>
                     <span class="bible-email">
                         Door: ${bibleText.user.name}
                     </span>

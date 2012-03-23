@@ -6,14 +6,17 @@
 
 <div id="text-content">
     <h2>${bibleText.textPointer}</h2>
-       Door: ${bibleText.user.name}
+       Door: ${bibleText.user.name} <br />
         ${bibleText.text}
         <c:forEach items="${bibleText.comments}" var="biblecomment">
             <div class="bible-comment">
-                ${biblecomment.user.name} schreef op datum: ${biblecomment.placeDate }<br /> 
+                ${biblecomment.user.name} schreef op datum: ${biblecomment.placeDate}<br /> 
                 <span class="italic">${biblecomment.comment}</span>
             </div>
         </c:forEach>
+        
+        <br /><br />
+        <a href="${backToOverviewLink}">Terug naar overzicht</a>
 </div>
 
 <mypage:footer/>

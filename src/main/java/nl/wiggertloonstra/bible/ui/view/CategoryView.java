@@ -21,7 +21,7 @@ public class CategoryView {
     }
     
     public String getUrl() {
-        return URLS.overview() + "?categoryId=" + categoryDo.getId();
+        return URLS.overview(categoryDo.getId());
     }
     
     public int getId() {

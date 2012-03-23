@@ -2,6 +2,7 @@ package nl.wiggertloonstra.bible.ui.view;
 
 import java.util.List;
 
+import nl.wiggertloonstra.bible.contants.Urls;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
@@ -33,6 +34,14 @@ public class BibleTextView {
     
     public UserDo getUser() {
         return bibleTextDo.getUser();
+    }
+    
+    public Integer getCategoryId() {
+        return bibleTextDo.getCategory().getId();
+    }
+    
+    public String getUrl() {
+        return Urls.INSTANCE.viewtext(bibleTextDo.getId());
     }
 
 }
