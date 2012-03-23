@@ -16,13 +16,7 @@
                     </span>
                 </td>
                 <td class="bible-text">
-                    ${bibleText.text}
-                    <c:forEach items="${bibleText.comments}" var="biblecomment">
-                        <div class="bible-comment">
-                            ${biblecomment.user.name} schreef op datum: <br /> 
-                            <span class="italic">${biblecomment.comment}</span>
-                        </div>
-                    </c:forEach>
+                    ${bibleText.textSnippet}
                 </td>
             </tr>
         </c:forEach>

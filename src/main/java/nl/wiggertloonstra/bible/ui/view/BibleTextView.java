@@ -9,6 +9,9 @@ import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
 public class BibleTextView {
+    
+    public static final int TEXT_SNIPPET_LENGTH_NOT_TOO_SHORTEN = 200;
+    public static final int TEXT_SNIPPET_DELTA = 70;
 
     private final BibleTextDo bibleTextDo;
 
@@ -24,7 +27,25 @@ public class BibleTextView {
         return bibleTextDo.getComments();
     }
     
-    public String getText() {
+    public String getTextSnippet() {
+        String text = bibleTextDo.getText();
+        if (text.trim().length() < TEXT_SNIPPET_LENGTH_NOT_TOO_SHORTEN) {
+            return text;
+        }
+        
+        int breakpoint = findSpaceAfterSnippetLength(text);
+        return bibleTextDo.getText().substring(0, breakpoint) + "...";
+    }
+    
+    private int findSpaceAfterSnippetLength(String text) {
+        int breakpoint = TEXT_SNIPPET_LENGTH_NOT_TOO_SHORTEN - TEXT_SNIPPET_DELTA;
+        while (breakpoint < text.length() && !text.substring(breakpoint, breakpoint+1).equals(" ")) {
+            breakpoint++;
+        }
+        return breakpoint;
+    }
+
+    public String getFullText() {
         return bibleTextDo.getText();
     }
     

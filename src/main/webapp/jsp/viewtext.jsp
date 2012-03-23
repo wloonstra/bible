@@ -7,7 +7,7 @@
 <div id="text-content">
     <h2>${bibleText.textPointer}</h2>
        Door: ${bibleText.user.name} <br />
-        ${bibleText.text}
+        ${bibleText.fullText}
         <c:forEach items="${bibleText.comments}" var="biblecomment">
             <div class="bible-comment">
                 ${biblecomment.user.name} schreef op datum: ${biblecomment.placeDate}<br /> 
