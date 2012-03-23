@@ -3,13 +3,14 @@
 <myTags:header/>
 <myTags:left-menu/>
 
-<div class="home-left">
-    Left block
+<div id="text-content">
+    <div class="home-left">
+        Left block
+    </div>
+    
+    <div class="home-right">
+        Right block
+    </div>
 </div>
 
-<div class="home-right">
-    Right block
-</div>
-
-
-<mypage:footer/>
+<myTags:footer/>
