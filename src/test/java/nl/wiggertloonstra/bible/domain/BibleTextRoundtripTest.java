@@ -45,7 +45,7 @@ public class BibleTextRoundtripTest {
         assertThat(retrievedBibleText.getStartVerse(), is(12));
         assertThat(retrievedBibleText.getEndChapter(), is(6));
         assertThat(retrievedBibleText.getEndVerse(), is(20));
-        assertThat(retrievedBibleText.getUser().getUsername(), is("piet"));
+        assertThat(retrievedBibleText.getUser().getName(), is("piet"));
         assertThat(retrievedBibleText.getMotivation(), is("Daarom vind ik deze tekst mooi!"));
         
         sessionManager.getSessionFactory().close();
@@ -71,7 +71,7 @@ public class BibleTextRoundtripTest {
     
     private UserDo createStoredUser(Session session) {
         UserDo user = new UserDo();
-        user.setUsername("piet");
+        user.setName("piet");
         session.beginTransaction();
         UserDo storedUser = (UserDo) session.merge(user);
         session.getTransaction().commit();

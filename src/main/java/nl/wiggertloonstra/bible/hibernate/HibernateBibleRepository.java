@@ -1,5 +1,6 @@
 package nl.wiggertloonstra.bible.hibernate;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static org.hibernate.criterion.Restrictions.like;
 
 import java.util.List;
@@ -100,7 +101,7 @@ public class HibernateBibleRepository implements BibleRepository {
     }
     
     @Override
-    public List<BibleComment> getBibleCommentDosFor(int bibleTextId) {
+    public List<BibleComment> getBibleCommentsFor(int bibleTextId) {
         Session session = sessionManager.session();
         @SuppressWarnings("unchecked")
         List<BibleComment> comments = (List<BibleComment>) session.createCriteria(BibleComment.class)
@@ -143,6 +144,17 @@ public class HibernateBibleRepository implements BibleRepository {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
     
+    @Override
+    public BibleTextView getBibleTextView(int bibleTextId) {
+        Session session = sessionManager.session();
+        return prepareForView((BibleTextDo) session.get(BibleTextDo.class, bibleTextId));
+    }
+    
+    private BibleTextView prepareForView(BibleTextDo bibleTextDo) {
+        return prepareForView(newArrayList(bibleTextDo)).get(0);
+        
+    }
+    
     private List<BibleTextView> prepareForView(List<BibleTextDo> bibleTextDos) {
         makeSureTextsAreAvailableFor(bibleTextDos);
         return Lists.transform(bibleTextDos, TO_BIBLETEXT_VIEW);
@@ -157,7 +169,4 @@ public class HibernateBibleRepository implements BibleRepository {
             }
         }
     }
-    
-    
-
 }

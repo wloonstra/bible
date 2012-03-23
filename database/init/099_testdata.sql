@@ -2,7 +2,7 @@ TRUNCATE TABLE user;
 TRUNCATE TABLE bibletext;
 
 INSERT INTO user (
-    username, email
+    name, email
 ) VALUES
 ('Wiggert','test@example.com'),
 ('Johannes','johannes@example.com'),

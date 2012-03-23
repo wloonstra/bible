@@ -12,14 +12,14 @@
                 <td class="bible-pointer">
                     ${bibleText.textPointer}
                     <span class="bible-email">
-                        Door: ${bibleText.email}
+                        Door: ${bibleText.user.name}
                     </span>
                 </td>
                 <td class="bible-text">
                     ${bibleText.text}
                     <c:forEach items="${bibleText.comments}" var="biblecomment">
                         <div class="bible-comment">
-                            ${biblecomment.user.username} schreef op datum: <br /> 
+                            ${biblecomment.user.name} schreef op datum: <br /> 
                             <span class="italic">${biblecomment.comment}</span>
                         </div>
                     </c:forEach>

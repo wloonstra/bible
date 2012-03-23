@@ -17,7 +17,8 @@ public interface BibleRepository {
     List<BibleTextView> getBibleTextsForUser(int userId);
     List<BibleTextView> getLatestBibleTexts(int numberOfResults);
     List<BibleTextView> getBibleTextsForCategory(Integer categoryId);
-    List<BibleComment> getBibleCommentDosFor(int bibleTextId);
+    BibleTextView getBibleTextView(int bibleTextId);
+    List<BibleComment> getBibleCommentsFor(int bibleTextId);
     void addBibleComment(BibleComment bibleComment);
     List<Book> getBooks();
     Book getBookByName(String bookName);

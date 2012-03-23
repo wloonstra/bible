@@ -1,6 +1,7 @@
 package nl.wiggertloonstra.bible.ui.controller;
 
 import nl.wiggertloonstra.bible.hibernate.BibleRepository;
+import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,9 @@ public class ViewtextController {
     
     @RequestMapping("/tekst.html")
     public String viewText(@RequestParam("textId") int textId, Model model) {
-        
-        model.addAttribute("tekstId", textId);
-        
+        BibleTextView bibleText = bibleRepository.getBibleTextView(textId);
+        model.addAttribute("bibleText", bibleText);
         return "viewtext";
-        
     }
 
 }

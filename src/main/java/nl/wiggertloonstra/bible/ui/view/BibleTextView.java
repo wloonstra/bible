@@ -4,6 +4,7 @@ import java.util.List;
 
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
 import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
 public class BibleTextView {
@@ -26,12 +27,12 @@ public class BibleTextView {
         return bibleTextDo.getText();
     }
     
-    public String getEmail() {
-        return bibleTextDo.getUser().getUsername();
-    }
-
     public Integer getId() {
         return bibleTextDo.getId();
+    }
+    
+    public UserDo getUser() {
+        return bibleTextDo.getUser();
     }
 
 }

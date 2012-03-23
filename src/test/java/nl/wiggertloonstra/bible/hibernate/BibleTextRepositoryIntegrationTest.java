@@ -65,9 +65,9 @@ public class BibleTextRepositoryIntegrationTest {
                            .build();
     }
     
-    private static UserDo newUser(String userName) {
+    private static UserDo newUser(String name) {
         UserDo user = new UserDo();
-        user.setUsername(userName);
+        user.setName(name);
         return user;
     }
     

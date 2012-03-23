@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
             UserDo newUser = new UserDo();
             newUser.setEmail(email);
             String name = getNameFrom(email);
-            newUser.setUsername(name);
+            newUser.setName(name);
             return userRepository.store(newUser);
         }
     }

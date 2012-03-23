@@ -22,12 +22,12 @@ public class UserRepositoryIntegrationTest {
     @Test
     public void storeAndRetrieveUser() throws Exception {
         UserDo newUser = new UserDo();
-        newUser.setUsername("nieuwe user");
+        newUser.setName("nieuwe user");
         
         UserDo storedUser = userRepository.store(newUser);
         
         UserDo retrievedUser = userRepository.getUserWithId(storedUser.getId());
-        assertThat(retrievedUser.getUsername(), is("nieuwe user"));
+        assertThat(retrievedUser.getName(), is("nieuwe user"));
         
     }
 
