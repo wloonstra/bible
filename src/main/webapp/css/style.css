@@ -70,6 +70,7 @@ div#category-menu {
     width: 225px;
     float: left;
     position: relative;
+    min-height: 300px;
 }
 
 td.bible-pointer {
