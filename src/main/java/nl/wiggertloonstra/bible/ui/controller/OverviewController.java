@@ -1,13 +1,11 @@
 package nl.wiggertloonstra.bible.ui.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import nl.wiggertloonstra.bible.hibernate.BibleRepository;
 import nl.wiggertloonstra.bible.service.CategoryServiceImpl;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
-import org.apache.http.client.ClientProtocolException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,7 +27,7 @@ public class OverviewController {
     
     @RequestMapping("/overzicht.html")
     public String overview(Model model,
-                           @RequestParam(required = false, defaultValue = "0") int categoryId) throws ClientProtocolException, IOException {
+                           @RequestParam(required = false, defaultValue = "0") int categoryId) {
         model.addAttribute("categoriesHeader", getHeaderFor(categoryId));
         model.addAttribute("bibleTexts", getBibleTextsFor(categoryId));
         return "overview";
