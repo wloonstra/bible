@@ -1,9 +1,6 @@
 package nl.wiggertloonstra.bible.util;
 
-import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
-import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
-import nl.wiggertloonstra.bible.hibernate.domain.Book;
-import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
+import nl.wiggertloonstra.bible.hibernate.domain.*;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -14,9 +11,9 @@ public class BibleTextBuilder {
     private int startVerse;
     private int endChapter;
     private int endVerse;
+    private CategoryDo category;
     private UserDo user;
-    private String motivation;
-    
+
     public static BibleTextBuilder aBibleText() {
         return new BibleTextBuilder();
     }
@@ -51,19 +48,16 @@ public class BibleTextBuilder {
         return this;
     }
     
-    public BibleTextBuilder withMotivation(String motivation) {
-        this.motivation = motivation;
+    public BibleTextBuilder withCategory(CategoryDo category) {
+        this.category = category;
         return this;
     }
     
     public BibleTextDo build() {
         BibleTextDo bibleText = new BibleTextDo();
-        
-        BibleVerse startBibleVerse = bibleVerse(book, startChapter, startVerse);
-        BibleVerse endBibleVerse = bibleVerse(book, endChapter, endVerse);
-        
-        bibleText.setBibleVerses(newArrayList(startBibleVerse, endBibleVerse));
+        bibleText.setBibleVerses(book, startChapter, startVerse, endVerse);
         bibleText.setUser(user);
+        bibleText.setCategory(category);
         return bibleText;
     }
 

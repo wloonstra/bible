@@ -1,17 +1,13 @@
 package nl.wiggertloonstra.bible.hibernate;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static org.hibernate.criterion.Restrictions.like;
-
-import java.util.List;
-
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import nl.wiggertloonstra.bible.collaborator.BiblijaScraper;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
-
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -21,8 +17,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static org.hibernate.criterion.Restrictions.like;
 
 /**
  * Hibernate implementation of BibleRepository.
@@ -30,7 +28,7 @@ import com.google.common.collect.Lists;
  */
 @Component
 public class HibernateBibleRepository implements BibleRepository {
-
+    
     private static final Function<BibleTextDo, BibleTextView> TO_BIBLETEXT_VIEW = new Function<BibleTextDo, BibleTextView>() {
         @Override
         public BibleTextView apply(BibleTextDo from) {

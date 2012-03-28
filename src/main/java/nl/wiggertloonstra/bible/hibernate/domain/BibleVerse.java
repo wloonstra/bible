@@ -17,9 +17,6 @@ public class BibleVerse {
     private int chapter;
     private int verse;
     private String text;
-//
-//    @ManyToOne
-//    private BibleTextDo bibleTextDo;
 
     public BibleVerse() {
         // empty constructor
@@ -61,12 +58,4 @@ public class BibleVerse {
     public void setText(String text) {
         this.text = text;
     }
-//    public BibleTextDo getBibleTextDo() {
-//        return bibleTextDo;
-//    }
-//    public void setBibleTextDo(BibleTextDo bibleTextDo) {
-//        this.bibleTextDo = bibleTextDo;
-//    }
-
-
 }

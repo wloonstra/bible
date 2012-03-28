@@ -51,13 +51,12 @@ public class BibleTextRepositoryIntegrationTest {
         assertThat(latestBibleTexts.size(), is(3));
     }
 
-    private static BibleTextDo newBibleTextFor(Book book, int startChapter, int startVerse, int endChapter, int endVerse, String motivation, UserDo user) {
+    private static BibleTextDo newBibleTextFor(Book book, int startChapter, int startVerse, int endChapter, int endVerse, UserDo user) {
         return aBibleText().inBook(book)
                            .startsAtChapter(startChapter)
                            .startsAtVerse(startVerse)
                            .endsAtChapter(endChapter)
                            .endsWithVerse(endVerse)
-                           .withMotivation(motivation)
                            .addedBy(user)
                            .build();
     }
@@ -71,14 +70,14 @@ public class BibleTextRepositoryIntegrationTest {
     private void placeTwoTextsFor(UserDo user) {
         Book leviticus = bookWithName("Leviticus");
         
-        storedText1 = repository.store(newBibleTextFor(leviticus, 1, 2, 3, 4, NO_MOTIVATION, user));
-        storedText2 = repository.store(newBibleTextFor(leviticus, 10, 11, 12, 13, "Motivation", user));
+        storedText1 = repository.store(newBibleTextFor(leviticus, 1, 2, 3, 4, user));
+        storedText2 = repository.store(newBibleTextFor(leviticus, 10, 11, 12, 13, user));
     }
     
     private void placeAdsFor(int number, UserDo user) {
         Book leviticus = bookWithName("Leviticus");
         for (int index = 0; index < number; index++) {
-            repository.store(newBibleTextFor(leviticus, 100, 101, 102, 103, NO_MOTIVATION, user));
+            repository.store(newBibleTextFor(leviticus, 100, 101, 102, 103, user));
         }
     }
     
