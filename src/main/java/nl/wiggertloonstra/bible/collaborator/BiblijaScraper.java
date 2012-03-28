@@ -1,6 +1,7 @@
 package nl.wiggertloonstra.bible.collaborator;
 
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
 import nl.wiggertloonstra.bible.util.BiblePointerFormatter;
 
 import org.openqa.selenium.By;
@@ -20,7 +21,15 @@ public class BiblijaScraper {
     }
     
     public String findFor(BibleTextDo bibleTextDo) {
-        driver.get(DEFAULT_BIBLIJA_URL + BiblePointerFormatter.format(bibleTextDo));
+        return getBibleTextForPointer(BiblePointerFormatter.format(bibleTextDo));
+    }
+    
+    public String findFor(BibleVerse bibleVerse) {
+        return getBibleTextForPointer(BiblePointerFormatter.format(bibleVerse));
+    }
+
+    private String getBibleTextForPointer(String biblePointer) {
+        driver.get(DEFAULT_BIBLIJA_URL + biblePointer);
         try {
             return driver.findElement(By.xpath("//table/tbody/tr/td/table/tbody/tr/td[@class = 'text']")).getText();
         } catch (NoSuchElementException e) {

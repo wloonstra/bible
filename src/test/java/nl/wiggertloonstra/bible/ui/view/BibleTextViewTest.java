@@ -1,10 +1,12 @@
 package nl.wiggertloonstra.bible.ui.view;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static nl.wiggertloonstra.bible.ui.view.BibleTextView.*;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
 
+import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
 import org.junit.Test;
 
 public class BibleTextViewTest {
@@ -30,12 +32,14 @@ public class BibleTextViewTest {
     }
 
     private void checkInputOutputForSnippet(String input, String output) {
-        BibleTextDo bibleText = new BibleTextDo();
-        bibleText.setText(input);
-        BibleTextView bibleTextView = new BibleTextView(bibleText);
+        BibleVerse bibleVerse = new BibleVerse();
+        bibleVerse.setText(input);
+        BibleTextDo bibleTextDo = new BibleTextDo();
+        bibleTextDo.setBibleVerses(newArrayList(bibleVerse));
+        BibleTextView bibleTextView = new BibleTextView(bibleTextDo);
         assertThat(bibleTextView.getTextSnippet(), is(output));
     }
-    
+
     private static String n(int number) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < number; i++) {

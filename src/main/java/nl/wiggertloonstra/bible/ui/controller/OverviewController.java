@@ -30,6 +30,9 @@ public class OverviewController {
                            @RequestParam(required = false, defaultValue = "0") int categoryId) {
         model.addAttribute("categoriesHeader", getHeaderFor(categoryId));
         model.addAttribute("bibleTexts", getBibleTextsFor(categoryId));
+        if (categoryId == 0) {
+            model.addAttribute("allCategories", true);
+        }
         return "overview";
     }
 

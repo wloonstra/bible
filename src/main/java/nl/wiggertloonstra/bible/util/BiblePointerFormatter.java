@@ -1,6 +1,7 @@
 package nl.wiggertloonstra.bible.util;
 
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
 
 public class BiblePointerFormatter {
 
@@ -18,6 +19,16 @@ public class BiblePointerFormatter {
             }
             pointer.append(bibleText.getEndVerse());
         }
+        return pointer.toString();
+    }
+
+
+    public static String format(BibleVerse bibleVerse) {
+        StringBuilder pointer = new StringBuilder(bibleVerse.getBook().getName());
+        pointer.append(" ");
+        pointer.append(bibleVerse.getChapter());
+        pointer.append(":");
+        pointer.append(bibleVerse.getVerse());
         return pointer.toString();
     }
 

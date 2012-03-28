@@ -43,23 +43,17 @@ public class BibleTextRoundtripTest {
         assertThat(retrievedBibleText.getBook().getName(), is("Genesis"));
         assertThat(retrievedBibleText.getStartChapter(), is(5));
         assertThat(retrievedBibleText.getStartVerse(), is(12));
-        assertThat(retrievedBibleText.getEndChapter(), is(6));
+        assertThat(retrievedBibleText.getEndChapter(), is(5));
         assertThat(retrievedBibleText.getEndVerse(), is(20));
         assertThat(retrievedBibleText.getUser().getName(), is("piet"));
-        assertThat(retrievedBibleText.getMotivation(), is("Daarom vind ik deze tekst mooi!"));
-        
+
         sessionManager.getSessionFactory().close();
     }
 
     private BibleTextDo newBibleText(Book genesis, UserDo storedUser) {
         BibleTextDo bibleText = new BibleTextDo();
-        bibleText.setBook(genesis);
-        bibleText.setStartChapter(5);
-        bibleText.setStartVerse(12);
-        bibleText.setEndChapter(6);
-        bibleText.setEndVerse(20);
+        bibleText.setBibleVerses(genesis, 5, 12, 20);
         bibleText.setUser(storedUser);
-        bibleText.setMotivation("Daarom vind ik deze tekst mooi!");
         return bibleText;
     }
 

@@ -35,23 +35,20 @@ public class BibleTextRepositoryIntegrationTest {
     private UserRepository userRepository;
     
     @Test
-    public void retrieveBibleTexts() throws Exception {
-        List<BibleTextView> bibleTexts = repository.getLatestBibleTexts(3);
-        assertThat(bibleTexts.size(), is(3));
-    }
-    
-    @Test
     public void retrieveByUser() throws Exception {
         UserDo user1 = userRepository.store(newUser("firstUser"));
         UserDo user2 = userRepository.store(newUser("secondUser"));
         
-        placeTwoAdsFor(user1);
+        placeTwoTextsFor(user1);
         placeAdsFor(1, user2);
         
         List<BibleTextView> bibleTexts = repository.getBibleTextsForUser(user1.getId());
         assertThat(bibleTexts.size(), is(2));
         assertThat(bibleTexts.get(0).getId(), is(storedText1.getId()));
         assertThat(bibleTexts.get(1).getId(), is(storedText2.getId()));
+
+        List<BibleTextView> latestBibleTexts = repository.getLatestBibleTexts(3);
+        assertThat(latestBibleTexts.size(), is(3));
     }
 
     private static BibleTextDo newBibleTextFor(Book book, int startChapter, int startVerse, int endChapter, int endVerse, String motivation, UserDo user) {
@@ -71,7 +68,7 @@ public class BibleTextRepositoryIntegrationTest {
         return user;
     }
     
-    private void placeTwoAdsFor(UserDo user) {
+    private void placeTwoTextsFor(UserDo user) {
         Book leviticus = bookWithName("Leviticus");
         
         storedText1 = repository.store(newBibleTextFor(leviticus, 1, 2, 3, 4, NO_MOTIVATION, user));

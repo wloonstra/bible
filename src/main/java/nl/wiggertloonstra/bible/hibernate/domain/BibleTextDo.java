@@ -2,13 +2,9 @@ package nl.wiggertloonstra.bible.hibernate.domain;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @Entity(name = "bibletext")
 public class BibleTextDo {
@@ -16,23 +12,21 @@ public class BibleTextDo {
     @Id
     @GeneratedValue
     private int id;
-
-    @ManyToOne
-    private Book book;
     
-    private int startChapter;
-    private int endChapter;
-    private int startVerse;
-    private int endVerse;
-    private String text;
-
     @ManyToOne
     private UserDo user;
     
-    private String motivation;
-    
     @ManyToOne
     private CategoryDo category;
+
+    @Column(name = "placedate", columnDefinition = "bigint(20)")
+    private long placeDate;
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "bibletext_bibleverse", 
+            joinColumns = { @JoinColumn(name = "bibletext_id") },
+            inverseJoinColumns = { @JoinColumn(name = "bibleverse_id") })
+    private List<BibleVerse> bibleVerses;
     
     @OneToMany
     @JoinTable(name = "bibletext_biblecomment", 
@@ -52,60 +46,12 @@ public class BibleTextDo {
         this.id = id;
     }
 
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
-
-    public int getStartChapter() {
-        return startChapter;
-    }
-
-    public void setStartChapter(int startChapter) {
-        this.startChapter = startChapter;
-    }
-
-    public int getEndChapter() {
-        return endChapter;
-    }
-
-    public void setEndChapter(int endChapter) {
-        this.endChapter = endChapter;
-    }
-
-    public int getStartVerse() {
-        return startVerse;
-    }
-
-    public void setStartVerse(int startVerse) {
-        this.startVerse = startVerse;
-    }
-
-    public int getEndVerse() {
-        return endVerse;
-    }
-
-    public void setEndVerse(int endVerse) {
-        this.endVerse = endVerse;
-    }
-    
     public UserDo getUser() {
         return user;
     }
 
     public void setUser(UserDo user) {
         this.user = user;
-    }
-
-    public String getMotivation() {
-        return motivation;
-    }
-
-    public void setMotivation(String motivation) {
-        this.motivation = motivation;
     }
 
     public CategoryDo getCategory() {
@@ -115,14 +61,23 @@ public class BibleTextDo {
     public void setCategory(CategoryDo category) {
         this.category = category;
     }
-    
-    public String getText() {
-        return text;
+
+    public long getPlaceDate() {
+        return placeDate;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPlaceDate(long placeDate) {
+        this.placeDate = placeDate;
     }
+
+    public List<BibleVerse> getBibleVerses() {
+        return bibleVerses;
+    }
+
+    public void setBibleVerses(List<BibleVerse> bibleVerses) {
+        this.bibleVerses = bibleVerses;
+    }
+
     public List<BibleComment> getComments() {
         return comments;
     }
@@ -130,7 +85,56 @@ public class BibleTextDo {
     public void setComments(List<BibleComment> comments) {
         this.comments = comments;
     }
+    
+    public Book getBook() {
+        return startVerse().getBook();
+    }
+    
+    public String getText() {
+        StringBuilder sb = new StringBuilder();
+        for (BibleVerse verse : bibleVerses) {
+            sb.append(verse.getText());
+        }
+        return sb.toString();
+    }
+    
+    public int getStartChapter() {
+        return startVerse().getChapter();
+    }
+    
+    public int getEndChapter() {
+        return endVerse().getChapter();
+    }
+    
+    public int getStartVerse() {
+        return startVerse().getVerse();
+    }
+    
+    public int getEndVerse() {
+        return endVerse().getVerse();
+    }
+    
+    public void setBibleVerses(Book book, int chapter, int startVerse, int endVerse) {
+        List<BibleVerse> bibleVerses = newArrayList();
+        for (int verse = startVerse; verse <= endVerse; verse++) {
+            bibleVerses.add(new BibleVerse(book, chapter, verse));
+        }
+        this.bibleVerses = bibleVerses;
+        
+    }
+    
+    private BibleVerse startVerse() {
+        return bibleVerses.get(0);
+    }
+    
+    private BibleVerse endVerse() {
+        return bibleVerses.get(bibleVerses.size() - 1);
+    }
+    
+    
+    
 
+    
 
     
 }

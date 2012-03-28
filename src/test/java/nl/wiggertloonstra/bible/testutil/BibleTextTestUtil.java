@@ -13,7 +13,6 @@ public class BibleTextTestUtil {
     public static final int START_VERSE = 2;
     public static final int END_CHAPTER = 3;
     public static final int END_VERSE = 4;
-    public static final String MOTIVATION = "motivation";
 
     public static BibleTextDto createDefaultBibleTextDto() {
         BibleTextDto bibleTextDto = new BibleTextDto();
@@ -22,18 +21,12 @@ public class BibleTextTestUtil {
         bibleTextDto.startVerse = START_VERSE;
         bibleTextDto.endChapter = END_CHAPTER;
         bibleTextDto.endVerse = END_VERSE;
-        bibleTextDto.motivation = MOTIVATION;
         return bibleTextDto;
     }
     
     public static BibleTextDo createDefaultBibleText() {
         BibleTextDo bibleText = new BibleTextDo();
-        bibleText.setBook(aBookWithId(BOOK));
-        bibleText.setStartChapter(START_CHAPTER);
-        bibleText.setStartVerse(START_VERSE);
-        bibleText.setEndChapter(END_CHAPTER);
-        bibleText.setEndVerse(END_VERSE);
-        bibleText.setMotivation(MOTIVATION);
+        bibleText.setBibleVerses(aBookWithId(BOOK), START_CHAPTER, START_VERSE, END_VERSE);
         return bibleText;
     }
     
@@ -48,7 +41,6 @@ public class BibleTextTestUtil {
             && text1.getStartVerse() == text2.getStartVerse() 
             && text1.getEndChapter() == text2.getEndChapter()
             && text1.getEndVerse() == text2.getEndVerse()
-            && text1.getMotivation().equals(text2.getMotivation())
             && text1.getUser() == text2.getUser();
     }
 

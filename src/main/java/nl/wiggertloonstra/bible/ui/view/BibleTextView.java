@@ -61,6 +61,10 @@ public class BibleTextView {
         return bibleTextDo.getCategory().getId();
     }
     
+    public String getCategoryName() {
+        return bibleTextDo.getCategory().getName();
+    }
+    
     public String getUrl() {
         return Urls.INSTANCE.viewtext(bibleTextDo.getId());
     }

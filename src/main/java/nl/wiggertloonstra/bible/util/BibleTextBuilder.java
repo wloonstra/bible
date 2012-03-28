@@ -1,8 +1,11 @@
 package nl.wiggertloonstra.bible.util;
 
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 public class BibleTextBuilder {
     
@@ -55,13 +58,20 @@ public class BibleTextBuilder {
     
     public BibleTextDo build() {
         BibleTextDo bibleText = new BibleTextDo();
-        bibleText.setBook(book);
-        bibleText.setStartChapter(startChapter);
-        bibleText.setStartVerse(startVerse);
-        bibleText.setEndChapter(endChapter);
-        bibleText.setEndVerse(endVerse);
+        
+        BibleVerse startBibleVerse = bibleVerse(book, startChapter, startVerse);
+        BibleVerse endBibleVerse = bibleVerse(book, endChapter, endVerse);
+        
+        bibleText.setBibleVerses(newArrayList(startBibleVerse, endBibleVerse));
         bibleText.setUser(user);
-        bibleText.setMotivation(motivation);
         return bibleText;
+    }
+
+    private BibleVerse bibleVerse(Book book, int chapter, int verse) {
+        BibleVerse firstBibleVerse = new BibleVerse();
+        firstBibleVerse.setBook(book);
+        firstBibleVerse.setChapter(chapter);
+        firstBibleVerse.setVerse(verse);
+        return firstBibleVerse;
     }
 }

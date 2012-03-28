@@ -8,6 +8,7 @@ import java.util.List;
 import nl.wiggertloonstra.bible.collaborator.BiblijaScraper;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleComment;
 import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
+import nl.wiggertloonstra.bible.hibernate.domain.BibleVerse;
 import nl.wiggertloonstra.bible.hibernate.domain.Book;
 import nl.wiggertloonstra.bible.ui.view.BibleTextView;
 
@@ -162,11 +163,13 @@ public class HibernateBibleRepository implements BibleRepository {
     
     private void makeSureTextsAreAvailableFor(List<BibleTextDo> bibleTextDos) {
         for (BibleTextDo bibleTextDo : bibleTextDos) {
-            if (StringUtils.isBlank(bibleTextDo.getText())) {
-                String text = biblijaScraper.findFor(bibleTextDo);
-                bibleTextDo.setText(text);
-                store(bibleTextDo);
+            for (BibleVerse bibleVerse : bibleTextDo.getBibleVerses()) {
+                if (StringUtils.isBlank(bibleVerse.getText())) {
+                    String text = biblijaScraper.findFor(bibleVerse);
+                    bibleVerse.setText(text);
+                }
             }
+            store(bibleTextDo);
         }
     }
 }

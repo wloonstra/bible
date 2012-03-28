@@ -2,15 +2,17 @@ package nl.wiggertloonstra.bible.collaborator;
 
 import nl.wiggertloonstra.bible.dto.BibleTextDto;
 import nl.wiggertloonstra.bible.hibernate.BibleRepository;
-import nl.wiggertloonstra.bible.hibernate.domain.BibleTextDo;
-import nl.wiggertloonstra.bible.hibernate.domain.Book;
-import nl.wiggertloonstra.bible.hibernate.domain.CategoryDo;
-import nl.wiggertloonstra.bible.hibernate.domain.UserDo;
+import nl.wiggertloonstra.bible.hibernate.domain.*;
 import nl.wiggertloonstra.bible.service.CategoryService;
 import nl.wiggertloonstra.bible.service.UserService;
 
+import org.hibernate.usertype.LoggableUserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * NewTextWorker performs the actual adding of a new BibleText.
@@ -34,20 +36,15 @@ public class NewTextWorker {
 
     /**
      * Add a bibleTextDto to the bibleTextRepository.
-     * @param bibleTextDto to add
+     * @param text to add
      */
-    public void add(BibleTextDto bibleTextDto) {
-        Book book = retrieveBookFrom(bibleTextDto);
-        CategoryDo category = retrieveCategoryFrom(bibleTextDto);
-        UserDo user = retrieveUserFrom(bibleTextDto);
+    public void add(BibleTextDto text) {
+        Book book = retrieveBookFrom(text);
+        CategoryDo category = retrieveCategoryFrom(text);
+        UserDo user = retrieveUserFrom(text);
         
         BibleTextDo newBibleText = new BibleTextDo();
-        newBibleText.setBook(book);
-        newBibleText.setMotivation(bibleTextDto.motivation);
-        newBibleText.setStartChapter(bibleTextDto.startChapter);
-        newBibleText.setStartVerse(bibleTextDto.startVerse);
-        newBibleText.setEndChapter(bibleTextDto.endChapter);
-        newBibleText.setEndVerse(bibleTextDto.endVerse);
+        newBibleText.setBibleVerses(book, text.startChapter, text.startVerse, text.endVerse);
         newBibleText.setCategory(category);
         newBibleText.setUser(user);
         bibleRepository.store(newBibleText);

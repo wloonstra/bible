@@ -17,6 +17,9 @@
                         <td class="bible-pointer">
                             <a href="${bibleText.url}">${bibleText.textPointer}</a>
                             <span class="bible-email">
+                                <c:if test="${allCategories}">
+                                    ${bibleText.categoryName}
+                                </c:if> <br />
                                 Door: ${bibleText.user.name}
                             </span>
                         </td>
