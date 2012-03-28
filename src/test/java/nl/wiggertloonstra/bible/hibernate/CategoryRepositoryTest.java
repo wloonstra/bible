@@ -20,8 +20,5 @@ public class CategoryRepositoryTest {
     public void checkCount() throws Exception {
         System.out.println(categoryRepository.getNumberOfTextsFor(1));
         Assert.assertEquals(1+1, 2);
-        
-        
     }
-
 }

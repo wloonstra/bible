@@ -33,7 +33,12 @@ public class BibleTextRepositoryIntegrationTest {
     
     @Autowired
     private UserRepository userRepository;
-    
+
+    @Test
+    public void getTextsForCategory() throws Exception {
+        assertThat(repository.getBibleTextsForCategory(1).size(), is(7));
+    }
+
     @Test
     public void retrieveByUser() throws Exception {
         UserDo user1 = userRepository.store(newUser("firstUser"));

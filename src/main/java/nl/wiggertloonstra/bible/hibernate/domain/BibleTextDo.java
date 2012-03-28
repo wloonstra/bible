@@ -1,13 +1,24 @@
 package nl.wiggertloonstra.bible.hibernate.domain;
 
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+
 import java.util.List;
 
 import javax.persistence.*;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Lists.transform;
 
 @Entity(name = "bibletext")
 public class BibleTextDo {
+    
+    private static final Function<BibleVerse, String> TO_TEXT = new Function<BibleVerse, String>() {
+        @Override
+        public String apply(BibleVerse from) {
+            return from.getText();
+        }
+    };
     
     @Id
     @GeneratedValue
@@ -33,7 +44,7 @@ public class BibleTextDo {
             joinColumns = { @JoinColumn(name = "bibletext_id") },
             inverseJoinColumns = { @JoinColumn(name = "biblecomment_id") })
     private List<BibleComment> comments;
-    
+
     public BibleTextDo() {
         // empty constructor
     }
@@ -91,11 +102,7 @@ public class BibleTextDo {
     }
     
     public String getText() {
-        StringBuilder sb = new StringBuilder();
-        for (BibleVerse verse : bibleVerses) {
-            sb.append(verse.getText());
-        }
-        return sb.toString();
+        return Joiner.on(" ").join(transform(bibleVerses, TO_TEXT));
     }
     
     public int getStartChapter() {
@@ -130,11 +137,4 @@ public class BibleTextDo {
     private BibleVerse endVerse() {
         return bibleVerses.get(bibleVerses.size() - 1);
     }
-    
-    
-    
-
-    
-
-    
 }

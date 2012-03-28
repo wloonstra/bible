@@ -1,0 +1,225 @@
+-- MySQL dump 10.13  Distrib 5.5.9, for osx10.6 (i386)
+--
+-- Host: localhost    Database: bibletext
+-- ------------------------------------------------------
+-- Server version	5.5.9
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `biblecomment`
+--
+
+DROP TABLE IF EXISTS `biblecomment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `biblecomment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `comment` text,
+  `placedate` int(11) DEFAULT NULL,
+  `bibletext_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `biblecomment`
+--
+
+LOCK TABLES `biblecomment` WRITE;
+/*!40000 ALTER TABLE `biblecomment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `biblecomment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bibletext`
+--
+
+DROP TABLE IF EXISTS `bibletext`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bibletext` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `placedate` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bibletext`
+--
+
+LOCK TABLES `bibletext` WRITE;
+/*!40000 ALTER TABLE `bibletext` DISABLE KEYS */;
+INSERT INTO `bibletext` VALUES (1,1,1,0),(2,1,1,0),(3,1,1,0),(4,1,1,0),(5,1,1,0),(6,1,1,0),(7,1,1,0),(8,1,2,0),(9,1,2,0),(10,1,2,0),(11,1,2,0),(12,1,2,0),(13,1,2,0),(14,1,2,0),(15,1,2,0),(16,1,3,0),(17,1,3,0),(18,1,3,0),(19,1,3,0),(20,1,3,0),(21,1,3,0),(22,1,3,0),(23,1,3,0),(24,1,3,0);
+/*!40000 ALTER TABLE `bibletext` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bibletext_biblecomment`
+--
+
+DROP TABLE IF EXISTS `bibletext_biblecomment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bibletext_biblecomment` (
+  `bibletext_id` int(11) DEFAULT NULL,
+  `biblecomment_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bibletext_biblecomment`
+--
+
+LOCK TABLES `bibletext_biblecomment` WRITE;
+/*!40000 ALTER TABLE `bibletext_biblecomment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bibletext_biblecomment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bibletext_bibleverse`
+--
+
+DROP TABLE IF EXISTS `bibletext_bibleverse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bibletext_bibleverse` (
+  `bibletext_id` int(11) DEFAULT NULL,
+  `bibleverse_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bibletext_bibleverse`
+--
+
+LOCK TABLES `bibletext_bibleverse` WRITE;
+/*!40000 ALTER TABLE `bibletext_bibleverse` DISABLE KEYS */;
+INSERT INTO `bibletext_bibleverse` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14),(15,15),(15,16),(16,17),(16,18),(17,19),(18,20),(19,21),(20,22),(20,23),(21,24),(22,25),(23,26),(24,27),(24,28);
+/*!40000 ALTER TABLE `bibletext_bibleverse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bibleverse`
+--
+
+DROP TABLE IF EXISTS `bibleverse`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bibleverse` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `book_id` int(11) DEFAULT NULL,
+  `chapter` int(11) DEFAULT NULL,
+  `verse` int(11) DEFAULT NULL,
+  `text` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bibleverse`
+--
+
+LOCK TABLES `bibleverse` WRITE;
+/*!40000 ALTER TABLE `bibleverse` DISABLE KEYS */;
+INSERT INTO `bibleverse` VALUES (1,45,12,1,'Leef volgens de wil van God \n12 1 Broeders en zusters, met een beroep op Gods barmhartigheid vraag ik u om uzelf als een levend, heilig en God welgevallig offer in zijn dienst te stellen, want dat is de ware eredienst voor u.'),(2,46,6,20,'20 U bent gekocht en betaald, dus bewijs God eer met uw lichaam.'),(3,19,50,15,'15 Roep mij te hulp in tijden van nood, \n ik zal je redden, en je zult mij eren.’'),(4,40,5,16,'16 Zo moet jullie licht schijnen voor de mensen, opdat ze jullie goede daden zien en eer bewijzen aan jullie Vader in de hemel.'),(5,51,3,13,'13 Verdraag elkaar en vergeef elkaar als iemand een ander iets te verwijten heeft; zoals de Heer u vergeven heeft, moet u elkaar vergeven.'),(6,51,3,17,'17 Doe alles wat u zegt of doet in de naam van de Heer Jezus, terwijl u God, de Vader, dankt door hem.'),(7,19,22,24,'24 Loof hem, allen die de HEER vrezen, \n breng hem eer, kinderen van Jakob, \n wees beducht voor hem, volk van Israël.'),(8,19,27,10,'10 Al verlaten mij vader en moeder, \n de HEER neemt mij liefdevol aan.'),(9,43,6,37,'37 Iedereen die de Vader mij geeft zal bij mij komen, en wie bij mij komt zal ik niet wegsturen,'),(10,19,9,11,'11 Wie uw naam kent, kan op u vertrouwen, \n u verlaat niet wie u zoeken, HEER.'),(11,52,4,8,'8 Dus wie deze voorschriften verwerpt, verwerpt niet een mens, maar God, die u zijn heilige Geest geeft.'),(12,62,3,1,'3 1 Bedenk toch hoe groot de liefde is die de Vader ons heeft geschonken! Wij worden kinderen van God genoemd, en dat zijn we ook. Dat de wereld ons niet kent, komt doordat de wereld hem niet kent.'),(13,20,18,24,'24 Wie veel vrienden heeft, raakt snel geruïneerd, \n een echte vriend is meer waard dan een broer.'),(14,49,1,4,'4 In Christus immers heeft God, voordat de wereld gegrondvest werd, ons vol liefde uitgekozen om voor hem heilig en zuiver te zijn,'),(15,19,94,14,'14 Nee, de HEER zal zijn volk niet verstoten, \n zijn liefste bezit niet verlaten.'),(16,19,94,15,'15 De rechtspraak voegt zich weer naar het recht, \n de oprechten van hart sluiten zich aan.'),(17,19,103,17,'17 Maar de HEER is trouw aan wie hem vrezen, \n van eeuwigheid tot eeuwigheid. \n Hij doet recht aan de kinderen en kleinkinderen'),(18,19,103,18,'18 van wie zich houdt aan zijn verbond \n en naar zijn geboden leeft.'),(19,19,138,3,'3 Toen ik u aanriep, hebt u geantwoord, \n mij bemoedigd en gesterkt.'),(20,19,138,7,'7 Al is mijn weg vol gevaren, u houdt mij in leven, \n u verdedigt mij tegen de woede van mijn vijanden, \n uw rechterhand brengt mij redding.'),(21,5,31,6,'6 Wees vastberaden en standvastig. Er is geen enkele reden om bang voor hen te zijn, want het is de HEER, uw God, die met u meegaat. Hij zal niet van uw zijde wijken en u niet verlaten.’'),(22,19,37,3,'3 Vertrouw op de HEER en doe het goede, \n bewoon het land en leef er veilig.'),(23,19,37,4,'4 Zoek je geluk bij de HEER, \n hij zal geven wat je hart verlangt.'),(24,23,41,10,'10 Wees niet bang, want ik ben bij je, \n vrees niet, want ik ben je God. \n Ik zal je sterken, ik zal je helpen, \n je steunen met mijn onoverwinnelijke rechterhand.'),(25,55,1,7,'7 God heeft ons niet een geest van lafhartigheid gegeven, maar een geest van kracht, liefde en bezonnenheid.'),(26,43,14,27,'27 Ik laat jullie vrede na; mijn vrede geef ik jullie, zoals de wereld die niet geven kan. Maak je niet ongerust en verlies de moed niet.'),(27,19,56,3,'3 Mijn tegenstanders bedreigen mij, heel de dag, \n en bestrijden mij vanuit hun hoge vesting.'),(28,19,56,4,'4 In mijn bangste uur vertrouw ik op u.');
+/*!40000 ALTER TABLE `bibleverse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `book`
+--
+
+DROP TABLE IF EXISTS `book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  `testament` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book`
+--
+
+LOCK TABLES `book` WRITE;
+/*!40000 ALTER TABLE `book` DISABLE KEYS */;
+INSERT INTO `book` VALUES (1,'Genesis',0),(2,'Exodus',0),(3,'Leviticus',0),(4,'Numeri',0),(5,'Deuteronomium',0),(6,'Jozua',0),(7,'Richteren',0),(8,'Ruth',0),(9,'1 Samuël',0),(10,'2 Samuël',0),(11,'1 Koningen',0),(12,'2 Koningen',0),(13,'1 Kronieken',0),(14,'2 Kronieken',0),(15,'Ezra',0),(16,'Nehemia',0),(17,'Ester',0),(18,'Job',0),(19,'Psalm',0),(20,'Spreuken',0),(21,'Prediker',0),(22,'Hooglied',0),(23,'Jesaja',0),(24,'Jeremia',0),(25,'Klaagliederen',0),(26,'Ezechiël',0),(27,'Daniël',0),(28,'Hosea',0),(29,'Joël',0),(30,'Amos',0),(31,'Obadja',0),(32,'Jona',0),(33,'Micha',0),(34,'Nahum',0),(35,'Habakuk',0),(36,'Sefanja',0),(37,'Haggai',0),(38,'Zaggaria',0),(39,'Maleachi',0),(40,'Matteüs',1),(41,'Marcus',1),(42,'Lucas',1),(43,'Johannes',1),(44,'Handelingen',1),(45,'Romeinen',1),(46,'1 Korintiërs',1),(47,'2 Korintiërs',1),(48,'Galaten',1),(49,'Efeziërs',1),(50,'Filippenzen',1),(51,'Kolossenzen',1),(52,'1 Tessalonicenzen',1),(53,'2 Tessalonicenzen',1),(54,'1 Timoteüs',1),(55,'2 Timoteüs',1),(56,'Titus',1),(57,'Filemon',1),(58,'Hebreeën',1),(59,'Jakobus',1),(60,'1 Petrus',1),(61,'2 Petrus',1),(62,'1 Johannes',1),(63,'2 Johannes',1),(64,'3 Johannes',1),(65,'Judas',1),(66,'Openbaring',1);
+/*!40000 ALTER TABLE `book` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Aanbidding'),(2,'Afwijzing'),(3,'Angst'),(4,'Bemoediging'),(5,'Bescherming'),(6,'Bezorgdheid'),(7,'Blijdschap'),(8,'Boosheid'),(9,'Dankbaarheid'),(10,'Dood'),(11,'Eenzaamheid'),(12,'Falen');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'wiggert','wiggert@example.com'),(2,'johannes','johannes@example.com'),(3,'petrus','petrus@example.com');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2012-03-28 21:24:56
